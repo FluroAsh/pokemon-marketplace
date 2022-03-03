@@ -62,5 +62,3 @@ gem "devise", "~> 4.8"
 gem "pagy", "~> 5.10"
 
 gem "pokemon_tcg_sdk", "~> 4.4"
-
-gem "tailwindcss-rails", "~> 2.0"
