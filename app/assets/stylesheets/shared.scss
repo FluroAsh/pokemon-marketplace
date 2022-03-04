@@ -1,0 +1,13 @@
+@import 'variables';
+
+nav {
+    background: $light-blue;
+}
+
+footer {
+    background: $dark-blue;
+    .socials {
+        height: 35px;
+        background: $red;
+    }
+}

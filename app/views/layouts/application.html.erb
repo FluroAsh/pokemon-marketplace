@@ -11,8 +11,15 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render 'shared/navbar' %>
+    <main class="d-flex align-items-center" >
+        <%= yield %>
+    </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
+
+<!-- 
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+>
