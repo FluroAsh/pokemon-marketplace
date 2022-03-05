@@ -1,4 +1,13 @@
-<nav class="d-flex justify-content-between navbar navbar-expand navbar-light">
+<nav class="mobile-nav d-flex navbar navbar-expand navbar-light align-items-center justify-content-between">
+    <div>
+    </div>
+    <div class="navbar__search--bar md-form active-cyan-2 mb-3">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    </div>
+</nav>
+
+<!-- 
+<nav class="mobile-nav d-flex navbar navbar-expand navbar-light justify-content-between">
     <ul class="nav navbar-nav">
         <li class="nav-item">
             <%= link_to "Logo", root_path, class: "nav-link" %>
@@ -7,4 +16,9 @@
             <%= link_to "Browse", root_path, class: "nav-link" %>
         </li>
     </ul>
+    <div>
+        <%= image_tag "https://via.placeholder.com/80" %>
+        <p>Profile</p>
+    </div>
 </nav>
+-->

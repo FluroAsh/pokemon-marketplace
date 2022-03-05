@@ -1,7 +1,10 @@
 @import 'variables';
 
-nav {
+.navbar {
     background: $light-blue;
+    &__search--bar {
+        width: 33%;
+    }
 }
 
 footer {
