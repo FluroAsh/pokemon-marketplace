@@ -4,15 +4,30 @@
     max-width: 800px;
     min-width: 300px;
     min-height: 200px;
-    &__search {
+    &__search { // main homepage search block
         padding: 2rem;
         width: 100%;
-        background: $yellow;
-        border-radius: 10px;
-        &--bar {
+        &-wrapper { // wraps the actual input element
             width: 100%;
             max-width: 600px;
             min-width: 200px;
         }
+        &-bar {
+            border-radius: 15px;
+            background-image: url('./icons8-pokeball-48.png');
+            background-size: 25px 25px;
+            background-position: 10px 8px;
+            background-repeat: no-repeat;
+            font-size: 1.25rem;
+            padding: 12px 20px 12px 40px;
+            }
+    }
+    h1 { // main header
+        font-family: 'Poppins', sans-serif;
+        font-size: 4rem;
+        color: $yellow;
+        font-weight: 700;
+        letter-spacing: 1px;
+        -webkit-text-stroke: 4px change-color($dark-blue, $alpha: 0.7); // webkit supported on all browsers except IE
     }
 }

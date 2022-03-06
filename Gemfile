@@ -25,9 +25,6 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-# simple form
-gem 'simple_form'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -65,3 +62,5 @@ gem "devise", "~> 4.8"
 gem "pagy", "~> 5.10"
 
 gem "pokemon_tcg_sdk", "~> 4.4"
+
+gem "simple_form", "~> 5.1"

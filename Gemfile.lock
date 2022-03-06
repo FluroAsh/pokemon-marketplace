@@ -330,7 +330,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.4)
   sass-rails (>= 6)
   selenium-webdriver
-  simple_form
+  simple_form (~> 5.1)
   spring
   turbolinks (~> 5)
   tzinfo-data
