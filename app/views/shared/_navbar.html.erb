@@ -1,13 +1,19 @@
 <nav class="mobile-nav d-flex navbar navbar-expand navbar-light align-items-center justify-content-between">
-    <div>
-        Hamburger
+    <!-- mobile menu button -->
+    <div class="menu-btn">
+        <div class="menu-btn__burger"></div>
     </div>
-    <div class="d-flex align-items-center navbar__search--bar md-form active-cyan-2">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-    </div>
+
+    <!-- won't render on root page -->
+    <% unless current_page?(root_path) %>
+        <div class="d-flex align-items-center navbar__search--bar md-form active-cyan-2">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </div>
+    <% end %>
 </nav>
 
-<!-- Need to remove search bar from home page only -->
+<!-- javascript for mobile btn -->
+<%= javascript_pack_tag 'navbar' %>
 
 <!-- 
 <nav class="mobile-nav d-flex navbar navbar-expand navbar-light justify-content-between">

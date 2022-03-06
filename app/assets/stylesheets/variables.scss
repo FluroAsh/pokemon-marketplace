@@ -5,10 +5,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 // Paragraphs
 
-
 /** color palette **/
+// general palette
 $yellow: #fbd743;
 $red: #ff1f1f;
 $light-blue: #5db9ff;
-$lighter-dark-blue: #484c91;
 $dark-blue: #363b81;
+
+// from Pokemon logo
+$primary: #ffcc00;
+$primary-2: #bd9808;
+$secondary: #39549d;
+
+/*-- Mixins --*/
+@mixin center($justify-content: center, $align-items: center) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}

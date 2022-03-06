@@ -14,7 +14,7 @@
         }
         &-bar {
             border-radius: 15px;
-            background-image: url('./icons8-pokeball-48.png');
+            background-image: url('./icons8-pokeball-48.png'); // asset from icons8
             background-size: 25px 25px;
             background-position: 10px 8px;
             background-repeat: no-repeat;
@@ -25,9 +25,9 @@
     h1 { // main header
         font-family: 'Poppins', sans-serif;
         font-size: 4rem;
-        color: $yellow;
+        color: $primary;
         font-weight: 700;
         letter-spacing: 1px;
-        -webkit-text-stroke: 4px change-color($dark-blue, $alpha: 0.7); // webkit supported on all browsers except IE
+        -webkit-text-stroke: 4px adjust-color($secondary, $alpha: 0.7); // webkit supported on all browsers except IE
     }
 }
