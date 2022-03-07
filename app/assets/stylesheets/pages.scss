@@ -3,7 +3,8 @@
 .home {
     max-width: 800px;
     min-width: 300px;
-    min-height: 200px;
+    height: 100%;
+    background-image: url('./pokemon-bg.jpg') no-repeat;
     &__search { // main homepage search block
         padding: 2rem;
         width: 100%;
@@ -14,7 +15,7 @@
         }
         &-bar {
             border-radius: 15px;
-            background-image: url('./icons8-pokeball-48.png'); // asset from icons8
+            background-image: url('./icons8-pokeball-48.png'); // asset from icons8.com
             background-size: 25px 25px;
             background-position: 10px 8px;
             background-repeat: no-repeat;

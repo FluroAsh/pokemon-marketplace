@@ -17,7 +17,7 @@ $primary: #ffcc00;
 $primary-2: #bd9808;
 $secondary: #39549d;
 
-/*-- Mixins --*/
+/*-- mixins --*/
 @mixin center($justify-content: center, $align-items: center) {
     display: flex;
     justify-content: $justify-content;

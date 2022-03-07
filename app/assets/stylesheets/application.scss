@@ -15,11 +15,9 @@
 */
 
 @import 'bootstrap/scss/bootstrap';
-@import 'pages';
-@import 'shared';
 @import 'variables';
-
-/** mixins **/
+@import 'shared';
+@import 'pages';
 
 /** universal styling **/
 * {
@@ -31,7 +29,7 @@
 }
 
 main {
-    min-height: calc(100vh - 145px);
+    height: calc(100vh - 152px);
     width: 100vw;
     background: lighten($yellow, 20%);
 }
