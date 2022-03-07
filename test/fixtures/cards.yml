@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_set_id: MyString
+  name: MyString
+  sprite_name: MyString
+  supertype: MyString
+  subtypes: MyString
+  level: MyString
+  ability_name: MyString
+  ability_text: MyString
+  types: MyString
+  weaknesses: MyString
+  resistances: MyString
+  retreat_cost: MyString
+  converted_retreat_cost: MyString
+  evolves_from: MyString
+  evolves_to: MyString
+  flavor_text: MyString
+  rules: MyString
+  number: MyString
+  rarity: MyString
+  national_pokedex_number: MyString
+  small_image: MyString
+  large_image: MyString
+
+two:
+  card_set_id: MyString
+  name: MyString
+  sprite_name: MyString
+  supertype: MyString
+  subtypes: MyString
+  level: MyString
+  ability_name: MyString
+  ability_text: MyString
+  types: MyString
+  weaknesses: MyString
+  resistances: MyString
+  retreat_cost: MyString
+  converted_retreat_cost: MyString
+  evolves_from: MyString
+  evolves_to: MyString
+  flavor_text: MyString
+  rules: MyString
+  number: MyString
+  rarity: MyString
+  national_pokedex_number: MyString
+  small_image: MyString
+  large_image: MyString

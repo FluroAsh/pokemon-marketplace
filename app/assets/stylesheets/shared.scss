@@ -22,35 +22,32 @@
     transition: all .3s ease-in-out;
     z-index: 99;
     border-radius: 15px;
-}
-
-.menu-btn__burger {
-    width: 30px;
-    height: 4px;
-    background: $secondary;
-    border-radius: 5px;
-    transition: all .3s ease-in-out;
-}
-.menu-btn__burger::before, 
-.menu-btn__burger::after {
-    content: '';
-    position: absolute; 
-    width: 30px;
-    height: 4px;
-    background: $secondary;
-    border-radius: 5px;
-    transition: all .3s ease-in-out;
-}
-
-.menu-btn__burger::before {
-    transform: translateY(-10px);
-}
-
-.menu-btn__burger::after {
-    transform: translateY(10px);
+    &__burger { // middle line styling
+        width: 40px;
+        height: 6px;
+        background: $secondary;
+        border-radius: 5px;
+        transition: all .3s ease-in-out;
+        &::before { // sets the positioning of before & after lines
+            transform: translateY(-13px);
+        }
+        &::after { // as above
+            transform: translateY(13px);
+        }
+        &::before, &::after { // styling for the before and after lines 
+            content: '';
+            position: absolute; 
+            width: 40px;
+            height: 6px;
+            background: $secondary;
+            border-radius: 5px;
+            transition: all .3s ease-in-out;
+        }
+    }
 }
 
 /*-- hamburger animation --*/
+// sets positive positioning on x-axis for middle element
 .menu-btn.open .menu-btn__burger {
     transform: translateX(50px);
     background: transparent;
