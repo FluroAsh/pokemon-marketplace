@@ -1,3 +1,3 @@
-include Pagy::Backend
 class ApplicationController < ActionController::Base
+    include Pagy::Backend
 end

@@ -1,14 +1,13 @@
 @import 'variables';
 
 .home {
-    max-width: 800px;
+    width: 100vw;
     min-width: 300px;
-    height: 100%;
-    background-image: url('./pokemon-bg.jpg') no-repeat;
+    height: calc(100% - 152px);
     &__search { // main homepage search block
         padding: 2rem;
         width: 100%;
-        &-wrapper { // wraps the actual input element
+        &-wrapper { // wraps the input element
             width: 100%;
             max-width: 600px;
             min-width: 200px;

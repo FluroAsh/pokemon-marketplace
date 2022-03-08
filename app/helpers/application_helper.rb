@@ -1,7 +1,8 @@
 module ApplicationHelper
-    def singularize(string)
-        p string
-        string.gsub(/\s.+/, "") if string.respond_to?(:to_s)
+    include Pagy::Frontend # makes pagy frontend helpers available in our views
+
+    def singularize(string) # targets any spaces and characters after it
+        string.gsub(/\s.+/, '') if string.respond_to?(:to_s)
     end
     
     def url_lg_sprite(pokedex_num)

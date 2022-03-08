@@ -23,3 +23,8 @@ $secondary: #39549d;
     justify-content: $justify-content;
     align-items: $align-items;
 }
+
+/** effects **/
+.hvr-grow {
+    transform: scale(1.1);
+}
