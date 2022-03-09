@@ -2,13 +2,17 @@
     <div class="index__pagination mt-2">
         <%== pagy_bootstrap_nav(@pagy)%> 
     </div>
-    <div class="index__row row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
-        <% for card in @cards %> <%# Get random 6 cards ... %>
-            <div class="col d-flex justify-content-center">
-                <%= image_tag "#{card.small_image}", id: "#{dom_id(card)}", class: "card-img my-2", alt: "#{card.name} trading card" %>
-                <div class="card-overlay "><!-- link to's buy/sell will go here (with aria-labels)-->
-                    
-                </div>
+    
+    <div class="index__row row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-6">
+        <% for card in @cards %> 
+            <div class="index__row-card col d-flex justify-content-center">
+                <a href="<%= card_path(card.id)%>">
+                    <%= image_tag "#{card.small_image}", id: "#{dom_id(card)}", class: "card-img my-2", alt: "#{card.name} trading card" %>
+                    <div class="index__row-card-market-menu">
+                        <%= button_to "Buy", card_path(card.id), class: "index__row-card-market-menu-buy"%>
+                        <%= button_to "Sell", card_path(card.id), class: "index__row-card-market-menu-sell"%>
+                    </div>
+                </a>
             </div>
         <% end %>
     </div>

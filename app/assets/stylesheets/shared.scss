@@ -1,67 +1,124 @@
 @import 'variables';
 
-.navbar {
+/*-- Main Header --*/
+.mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     width: 100vw;
     height: 60px;
     background: $primary;
     border-bottom: 4px solid $secondary;
     &__search--bar {
-        width: 33%;
+        width: 50%;
+        min-width: 200px;
+        max-width: 600px;
     }
-}
-
-/*-- hamburger button --*/
-.menu-btn {
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    margin: 5px 5px 5px 0;
-    @include center;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    z-index: 99;
-    border-radius: 15px;
-    &__burger { // middle line styling
-        width: 40px;
-        height: 6px;
-        background: $secondary;
-        border-radius: 5px;
-        transition: all .2s ease-in-out;
-        &::before { // sets the positioning of before & after lines
-            transform: translateY(-13px);
-        }
-        &::after { // as above
-            transform: translateY(13px);
-        }
-        &::before, &::after { // styling for the before and after lines 
-            content: '';
-            position: absolute; 
+    /*-- Hamburger Button --*/
+    .menu-btn {
+        display: fixed;
+        top: 0;
+        @include center;
+        width: 50px;
+        height: 50px;
+        margin: 5px 5px 5px 0;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        z-index: 99;
+        border-radius: 15px;
+        &__burger { /* middle line styling */
             width: 40px;
             height: 6px;
             background: $secondary;
             border-radius: 5px;
-            transition: all .2s ease-in-out;
+            transition: all .3s ease-in-out;
+            &::before { /* sets the positioning of before & after lines */
+                transform: translateY(-13px);
+            }
+            &::after { /* as above */
+                transform: translateY(13px);
+            }
+            &::before, &::after { /* styling for the before and after lines */
+                content: '';
+                position: absolute; 
+                width: 40px;
+                height: 6px;
+                background: $secondary;
+                border-radius: 5px;
+                transition: all .2s ease-in-out;
+            }
+        }
+    }
+    /*-- Hamburger Animation --*/
+    /* sets position of fade-out middle line after animation */
+    .menu-btn.open .menu-btn__burger {
+        transform: translateX(50px);
+        background: transparent;
+    }
+    /* orientation for 'x' lines */
+    .menu-btn.open .menu-btn__burger::before {
+        transform: rotate(45deg) translate(-35px, 35px);
+    }
+    .menu-btn.open .menu-btn__burger::after {
+        transform: rotate(-45deg) translate(-35px, -35px);
+    }
+}
+/*-- Slide Out Mobile Menu --*/
+.mobile-nav { /* menu block */
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    z-index: 98;
+    background: adjust-color($yellow, $alpha: -0.05);
+    justify-content: space-between;
+    transition: .3s;
+    &.open { /* sets which direction for menu to 'slide' to */
+        right: 0;
+    }
+    &__social { /* social icons container */
+        @include center;
+        width: 100%;
+        flex-direction: row;
+        .s-icon { /* mobile menu social link container (a element) */
+            @include center;
+            list-style: none;
+            text-decoration: none;
+            padding: 0 5px 10px;
+            color: #909096;
+            svg { /* targets svg icon for styling */
+                width: 80%;
+                fill: $secondary;
+            }
+            :hover {
+                fill: $red;
+                transition: fill .2s;
+            }
+        }
+    }    
+    .nav-btn { /* link blocks */
+        @include center;
+        width: 100%;
+        text-align: center;
+        line-height: 1.5rem;
+        padding: 12px 16px;
+        color: $secondary;
+        text-decoration: none;
+    }
+    .nav-links { /* links container */
+        font-size: 2rem;
+        a:hover { // on hover link block
+            color: $light-blue;
+            background: adjust-color($primary-2, $alpha: -0.75);
         }
     }
 }
 
-/*-- hamburger animation --*/
-// sets positive positioning on x-axis for middle element
-.menu-btn.open .menu-btn__burger {
-    transform: translateX(50px);
-    background: transparent;
-}
-
-.menu-btn.open .menu-btn__burger::before {
-    transform: rotate(45deg) translate(-35px, 35px);
-}
-
-.menu-btn.open .menu-btn__burger::after {
-    transform: rotate(-45deg) translate(-35px, -35px);
-}
-
+/*-- Site Footer --*/
 footer {
     width: 100%;
     background: $secondary;
@@ -71,3 +128,9 @@ footer {
         background: $red;
     }
 }
+
+/** Media Queries **/
+
+/* Mobile > */
+/* Tablet > */
+/* Laptop > */
