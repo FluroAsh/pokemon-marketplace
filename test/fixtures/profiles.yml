@@ -6,7 +6,7 @@ one:
   last_name: MyString
   state: MyString
   suburb: MyString
-  postcode: MyString
+  postcode: 1
 
 two:
   user: two
@@ -14,4 +14,4 @@ two:
   last_name: MyString
   state: MyString
   suburb: MyString
-  postcode: MyString
+  postcode: 1

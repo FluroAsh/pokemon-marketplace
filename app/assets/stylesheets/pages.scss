@@ -5,15 +5,18 @@
     width: 100vw;
     min-width: 300px;
     height: calc(100% - 92px);
-    &__search { // main homepage search block
+    &__search {
+        // main homepage search block
         padding: 2rem;
         width: 100%;
-        &-wrapper { // wraps the input element
+        &-wrapper {
+            // wraps the input element
             width: 100%;
             max-width: 600px;
             min-width: 200px;
         }
-        &-bar { // input form
+        &-bar {
+            // input form
             border-radius: 15px;
             background-image: url('./icons8-pokeball-48.png'); // asset from icons8.com
             background-size: 25px 25px;
@@ -21,9 +24,10 @@
             background-repeat: no-repeat;
             font-size: 1.25rem;
             padding: 12px 20px 12px 40px;
-            }
+        }
     }
-    h1 { // main header
+    h1 {
+        // main header
         font-family: 'Poppins', sans-serif;
         font-size: 6rem;
         color: $primary;
@@ -35,13 +39,12 @@
         text-align: center;
     }
 }
-//**//
+// **//
 
 /**-- Page Breakpoints **/
 /* Mobile Views */
-@media screen and (max-width: 500px) {
+@media screen and(max-width: 500px) {
     .home h1 {
         font-size: 4rem;
     }
 }
-

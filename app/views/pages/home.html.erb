@@ -3,7 +3,7 @@
         <h1>Pokéhub</h1>
         <!-- search form -->
         <div class="home__search-wrapper md-form active-cyan-2 mb-1">
-            <%= form_tag cards_path, :method => 'get' do %>
+            <%= form_tag cards_path, :method => "get" do %>
                  <%= text_field_tag :query, params[:query], class: "home__search-bar form-control", placeholder: "Search for a card" %>
             <% end %>
         </div>

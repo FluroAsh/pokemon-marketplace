@@ -1,0 +1,39 @@
+@import 'variables';
+.devise-heading {
+    /* page heading */
+    text-align: center;
+}
+
+.sign-up,
+.login,
+.edit-user {
+    @include center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 92px);
+    a {
+        /* link styling */
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__form {
+        /* form container styles */
+        display: flex;
+        flex-flow: column wrap;
+        min-width: 350px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        color: #fff;
+        background: $secondary;
+        border: 4px solid $primary;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+    }
+    .avatar {
+        @include center;
+        flex-direction: column;
+    }
+}

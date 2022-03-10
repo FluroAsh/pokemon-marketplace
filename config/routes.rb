@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "pages#home"
   devise_for :users
+  # cards routes
   get "cards", to: "cards#index", as: "cards"
   get "cards/:id", to: "cards#show", as: "card"
   # listing routes
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
   patch "listings/:id", to: "listings#update"
   delete "listings/:id", to: "listings#destroy"
   get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
-  # listings, listing/:id, post, etc.
-  # profile, profile/:id
+  # profile routes
+  get "profiles/:id", to: "profiles#show", as: "profile"
+
   get "restricted", to: "pages#restricted"
 end
