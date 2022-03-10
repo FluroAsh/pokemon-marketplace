@@ -3,7 +3,7 @@
         <%== pagy_bootstrap_nav(@pagy)%> 
     </div>
     
-    <div class="index__row row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-6">
+    <div class="index__row row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 d-flex justify-content-center">
         <% for card in @cards %> 
             <div class="index__row-card col d-flex justify-content-center">
                 <a href="<%= card_path(card.id)%>">

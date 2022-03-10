@@ -6,15 +6,20 @@
 
     <!-- won't render on root page -->
     <% unless current_page?(root_path) %>
-        <div class="d-flex align-items-center navbar__search--bar md-form active-cyan-2">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </div>
+        <%= form_tag cards_path, :method => 'get' do %>
+                <%= text_field_tag :query, params[:query], class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
+        <% end %>
     <% end %>
 </nav>
 
 <!-- Contains sliding mobile-nav bar -->            
 <nav class="mobile-nav"> 
-    <div class="mobile-nav__top"></div> <!-- Profile Details will go here (avatar, name) -->
+    <div class="mobile-nav__top"> 
+        <!-- >> PLACEHOLDERS for when profile and user are implemented << -->
+        <%= image_tag "https://via.placeholder.com/150", alt: "profile avatar" %>
+        <h3>Ashley</h3>
+        <span>Edit Profile</span>
+    </div>
     
     <div class="nav-links">
         <%= link_to "Home", root_path, class: "nav-btn" %>

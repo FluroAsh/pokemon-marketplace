@@ -20,7 +20,7 @@
 @import 'pages';
 @import 'cards';
 
-/** Universal Styling **/
+/*-- Universal Styling --*/
 * {
     padding: 0;
     margin: 0;
@@ -40,8 +40,15 @@ body {
     padding-top: 60px;
     background: lighten($yellow, 30%); /* default background for all pages */
     &.lock-scroll {
-        overflow: hidden;
+        overflow: hidden; /* prevents scrolling while mobile menu is open */
      }
+}
+
+/* bootstrap alert/notice override */
+.notice, .alert { 
+    position: fixed; 
+    top: 60px;
+    width: 100%;
 }
 
 

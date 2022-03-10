@@ -31,6 +31,9 @@
         letter-spacing: 1px;
         -webkit-text-stroke: 4px adjust-color($secondary, $alpha: 0.7); // webkit supported on all browsers except IE
     }
+    .hint-text {
+        text-align: center;
+    }
 }
 //**//
 

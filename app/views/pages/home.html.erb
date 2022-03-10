@@ -2,11 +2,12 @@
     <div class="home__search d-flex flex-column justify-content-center align-items-center">
         <h1>Pokéhub</h1>
         <!-- search form -->
-        <div class="home__search-wrapper md-form active-cyan-2 mb-3">
+        <div class="home__search-wrapper md-form active-cyan-2 mb-1">
             <%= form_tag cards_path, :method => 'get' do %>
-                 <%= text_field_tag :search, params[:search], class: "home__search-bar form-control", placeholder: "Search for a card or rarity" %>
+                 <%= text_field_tag :query, params[:query], class: "home__search-bar form-control", placeholder: "Search for a card" %>
             <% end %>
         </div>
+        <p class="hint-text"> Try searching for a card set, or rarity! — <i id="hint">eg: ('Team Rocket' or 'Rare Holo')</i></p>
         <!-- image_tag with random Pokėmon sprite from DB -->
         <%= get_random_card_sprite %> 
     </div>
