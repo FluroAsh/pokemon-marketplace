@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   patch "listings/:id", to: "listings#update"
   delete "listings/:id", to: "listings#destroy"
   get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
-  # profile routes
-  get "profiles/:id", to: "profiles#show", as: "profile"
-
+  # profiles routes
+  get "profiles/:id", to: "profiles#show", as: "profile" # extension of devise user routes
   get "restricted", to: "pages#restricted"
 end

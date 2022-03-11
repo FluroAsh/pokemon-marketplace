@@ -15,14 +15,10 @@
 <!-- Contains sliding mobile-nav bar -->
 <nav class="mobile-nav">
     <div class="mobile-nav__top">
-        <!-- >> PLACEHOLDERS for when profile and user are implemented << -->
-        <!-- TO DO: add in (if user_signed_in? else display log in) -->
         <% if current_user %>
-            <%= image_tag(current_user.avatar_thumbnail) %> <!-- get avatar, check if it's up, else return default -->
-            <!-- current_user.profile.first_name   -> Get the profile name associated with current user ... doesn't exist yet! -->
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "" %>
-        <% else %>
-        
+            <%= image_tag(current_user.avatar_thumbnail, class: "mobile-nav__top__avatar") %> <!-- manual resize for default image -->
+            <h3><%= current_user.profile.first_name %></h3>
+            <%= link_to "Edit Profile", edit_user_registration_path %>
         <% end %>
     </div>
 

@@ -2,38 +2,98 @@
 .devise-heading {
     /* page heading */
     text-align: center;
+    margin-top: 1rem;
 }
 
+#error_explanation {
+    /* container that raises errors from devise */
+    @include center;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8d7da;
+    color: #721c24;
+    border-bottom: #f5c6cb;
+    border-radius: 5px;
+}
+
+/* unique style width for edit-user form */
+.login form {
+    @include devise-form($width: 350px);
+}
+/* style for edit-user form */
+.sign-up form {
+    @include devise-form;
+}
+/* devise form containers */
 .sign-up,
 .login,
 .edit-user {
     @include center;
     flex-direction: column;
     width: 100%;
-    height: calc(100% - 92px);
+    min-height: calc(100% - 92px);
+    /* link styling */
     a {
-        /* link styling */
-        color: #fff;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
+        @include link-styling;
+    }
+    /* style for edit-user form */
+    .edit-user form {
+        @include devise-form;
+        /* delete account block */
+        &__delete {
+            text-align: center;
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            color: #000;
+            border: 4px solid $primary;
+            border-radius: 5px;
+            background: adjust-color(#f8d7da, $alpha: -0.5);
+            /* container for delete button */
+            .button_to {
+                @include center;
+            }
+            input[type="submit"] {
+                /* submit button for delete account action */
+                @include warning-button;
+            }
         }
     }
-    &__form {
-        /* form container styles */
-        display: flex;
-        flex-flow: column wrap;
-        min-width: 350px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        color: #fff;
-        background: $secondary;
-        border: 4px solid $primary;
-        border-radius: 15px;
-        box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
-    }
+    /* image container block */
     .avatar {
         @include center;
         flex-direction: column;
+        /* avatar image */
+        .user-avatar {
+            margin: 0.5rem;
+            border: 3px solid $primary;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px 0 inset;
+        }
+        /* label which acts as the box for file browsing */
+        .file-browse {
+            @include center;
+            @include generic-button($border-radius: 5px, $width: 80px, $height: 20px);
+            margin: 0.5rem;
+        }
+        /* disabled to create singular label element */
+        input[type=file] {
+            display: none;
+        };
+        /* specifies the label width */
+        input {
+            padding: 0.5rem;
+            width: 200px;
+        }
+    }
+    /* contains the action button (update, create etc) */
+    .actions {
+        @include center;
+        flex-direction: column;
+        padding: 0.5rem;
+        input {
+            @include generic-button;
+        }
     }
 }

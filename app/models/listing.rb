@@ -2,5 +2,6 @@ class Listing < ApplicationRecord
   belongs_to :card
   belongs_to :user
 
-  enum condition: { mint: 1, good: 2, average: 3, poor: 4, very_poor: 5 }
+  # enum to map our numbers to something more readable
+  enum condition: { Poor: 1, Good: 2, Fair: 3, Excellent: 4, Mint: 5 }
 end

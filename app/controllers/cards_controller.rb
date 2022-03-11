@@ -1,20 +1,20 @@
 class CardsController < ApplicationController
-    before_action :set_card, only: [:show]
+  before_action :set_card, only: [:show]
 
-    # as all values are preset we don't need any methods for Create, Update or Destroy (only read)
-    def index
-        @pagy, @cards = pagy(Card.text_search(params[:query]))
+  # as all values are preset we don't need any methods for Create, Update or Destroy (only read)
+  def index
+    @pagy, @cards = pagy(Card.text_search(params[:query]))
+  end
 
-    end
+  def show; end
 
-    def show; end
+  def search; end
 
-    def search; end
+  private
 
-    private
-        def card_params; end
+  def card_params; end
 
-        def set_card
-            @card = Card.find(params[:id])
-        end
+  def set_card
+    @card = Card.find(params[:id])
+  end
 end

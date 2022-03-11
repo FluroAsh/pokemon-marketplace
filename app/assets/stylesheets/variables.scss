@@ -18,10 +18,57 @@ $primary-2: #bd9808;
 $secondary: #39549d;
 
 /*-- mixins --*/
+
+@mixin generic-button($width: 100px, $height: 30px, $border-radius: 15px) {
+    font-weight: 400;
+    width: $width;
+    height: $height;
+    border: none;
+    background: $primary;
+    color: #000;
+    border-radius: $border-radius;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+    &:hover {
+        background: lighten($primary-2, 5%);
+    }
+}
+
+@mixin warning-button($width: 100px, $height: 30px, $border-radius: 15px) {
+    text-width: $width;
+    height: $height;
+    border: none;
+    background: #f8d7da;
+    color: #721c24;
+    border-radius: $border-radius;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+}
+
+@mixin link-styling {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
 @mixin center($justify-content: center, $align-items: center) {
     display: flex;
     justify-content: $justify-content;
     align-items: $align-items;
+}
+
+@mixin devise-form($width: 600px) {
+    height: 100%;
+    max-width: 100%;
+    width: $width;
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    margin: 0 0 1rem;
+    color: #fff;
+    background: $secondary;
+    border: 4px solid $primary;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
 }
 
 /** effects **/

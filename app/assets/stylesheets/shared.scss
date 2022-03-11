@@ -17,7 +17,7 @@
         border-radius: 15px;
         background-image: url('./icons8-pokeball-48.png'); // asset from icons8.com
         background-size: 25px 25px;
-        background-position: 10px 7px;
+        background-position: 10px 8px;
         background-repeat: no-repeat;
         font-size: 1.25rem;
         padding: 12px 20px 12px 40px;
@@ -96,13 +96,21 @@
     }
     &__top {
         /* container for mobile profile component */
-        // display: flex;
         @include center;
         flex-direction: column;
         margin-top: 70px;
         &__avatar {
-            // styling for the avatar element
+            // styling for avatar element
+            width: 150px;
+            height: 150px;
+            border: 3px solid $secondary;
             border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px 0 inset;
+        }
+        h3 {
+            color: $secondary;
+            font-size: 1.5rem;
+            margin: 0;
         }
     }
     &__social {
@@ -123,7 +131,7 @@
                 fill: $secondary;
             }
             :hover {
-                fill: $red;
+                fill: $light-blue;
                 transition: fill 0.2s;
             }
         }
@@ -143,7 +151,7 @@
         font-size: 2rem;
         padding-bottom: 70px;
         a:hover {
-            // on hover link block
+            /* on hover link block */
             color: $light-blue;
             background: adjust-color($primary-2, $alpha: -0.75);
         }
