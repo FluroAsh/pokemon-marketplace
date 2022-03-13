@@ -15,7 +15,6 @@ module ApplicationHelper
   end
 
   def url_sm_sprite_ef(name) # evolves from with url
-    puts name
     "https://img.pokemondb.net/sprites/sword-shield/icon/#{name.gsub('"', "").downcase}.png"
   end
 

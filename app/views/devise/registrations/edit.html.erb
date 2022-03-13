@@ -1,90 +1,92 @@
 <section class="edit-user">
-    <h2 class="devise-heading">Edit
-        <%= resource_name.to_s.humanize %></h2>
+  <h2 class="devise-heading">Edit
+  <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="avatar"> 
-          <div class="field">
-            <% if resource.avatar.attached? %>
-              <%= image_tag(resource.avatar_thumbnail, class: "user-avatar") %> <!-- renders processed user avatar -->
-            <% else %>
-              <%= image_tag("default-profile.jpg", style: "width:150px;height:150px;border:2px solid black;border-radius:5px;") %>
-            <% end %>
-          </div>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %> 
+      <div class="avatar"> 
+        <div class="field">
+          <% if resource.avatar.attached? %>
+            <%= image_tag(resource.avatar_thumbnail, class: "user-avatar") %> <!-- renders processed user avatar -->
+          <% else %>
+            <%= image_tag("default-profile.jpg", class: "user-avatar") %>
+          <% end %>
+        </div>
           
-          <div class="field">
-            <%= f.label :avatar, "Browse", class: "file-browse" %>
-            <%= f.file_field :avatar, accept: "image/png, image/jpg, image/jpeg" %>
-          </div>
+        <div class="form-group">
+          <%= f.label :avatar, "Browse", class: "file-browse" %>
+          <%= f.file_field :avatar, accept: "image/png, image/jpg, image/jpeg" %>
         </div>
+      </div>
 
-        <div class="email field">
-            <%= f.label :email %><br/>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for:
-                <%= resource.unconfirmed_email %>
+      <div class="form-row row-cols-2">
+        <div class="col">
+          <%= f.fields_for :profile do |profile| %>
+            <div class="first-name form-group">
+              <%= profile.label :first_name %><br />
+              <%= profile.text_field :first_name, placeholder: "First name" %>
             </div>
-        <% end %>
 
-        <div class="password field">
+            <div class="last-name form-group">
+              <%= profile.label :last_name %><br />
+              <%= profile.text_field :last_name, placeholder: "Last name" %>
+            </div>
+
+            <div class="suburb form-group">
+              <%= profile.label :suburb %><br />
+              <%= profile.text_field :suburb, placeholder: "Suburb" %>
+            </div>
+
+            <div class="state form-group">
+              <%= profile.label :state %><br />
+              <%= profile.text_field :state, placeholder: "State" %>
+            </div>
+
+            <div class="postcode form-group">
+              <%= profile.label :postcode %><br />
+              <%= profile.text_field :postcode, placeholder: "Postcode" %>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="col">
+          <div class="email form-group">
+            <%= f.label :email %><br/>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for:
+              <%= resource.unconfirmed_email %>
+            </div>
+          <% end %>
+
+          <div class="password form-group">
             <%= f.label :password, "New Password" %><br/>
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <% if @minimum_password_length %>
-                <br/>
-                <em><%= @minimum_password_length %>
-                    characters minimum</em>
-            <% end %>
-        </div>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "New password" %><br/>
+          </div>
 
-        <div class="password-confirmation field">
+          <div class="password-confirmation form-group">
             <%= f.label :password_confirmation, "Confirm Password" %><br/>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+          </div>
 
-        <div class="current-password field">
+          <div class="current-password form-group">
             <%= f.label :current_password, "Current Password" %></i><br/>
-            <%= f.password_field :current_password, autocomplete: "current-password" %>
+            <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Current password" %>
+          </div>
         </div>
+      </div>
 
-        <%= f.fields_for :profile do |profile| %>
-          <div class="first-name field">
-            <%= profile.label :first_name %><br />
-            <%= profile.text_field :first_name %>
-          </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
 
-          <div class="last-name field">
-            <%= profile.label :last_name %><br />
-            <%= profile.text_field :last_name %>
-          </div>
-
-          <div class="state field">
-            <%= profile.label :state %><br />
-            <%= profile.text_field :state %>
-          </div>
-
-          <div class="suburb field">
-            <%= profile.label :suburb %><br />
-            <%= profile.text_field :suburb %>
-          </div>
-
-          <div class="postcode field">
-            <%= profile.label :postcode %><br />
-            <%= profile.text_field :postcode %>
-          </div>
-        <% end %>
-
-        <div class="actions">
-            <%= f.submit "Update" %>
-        </div>
-<% end %>
-
-        <div class="edit-user__form__delete">
-            <h3>Delete my Account 😢</h3>
-            <%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-            <%= link_to "Back", :back %>
-        </div>
+  <div class="edit-user__delete">
+    <h3 class="text-center">Delete my Account</h3>
+    <span alt="sad emoji pointing down">👇😢👇</span>
+    <%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+    <%= link_to "Back", :back %>
+  </div>
 </section>

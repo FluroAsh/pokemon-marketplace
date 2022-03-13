@@ -1,71 +1,76 @@
 <section class="sign-up">
-<h2 class="devise-heading">Sign up</h2>
+  <h2 class="devise-heading">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
       <!-- avatar block for attaching an image -->
-        <div class="avatar"> 
-          <div class="field">
-            <% if resource.avatar.attached? %>
-              <%= image_tag(resource.avatar) %>
-            <% else %>
-              <%= image_tag("default-profile.jpg", style: "width:150px;height:150px;border:2px solid black;border-radius:5px;opacity:0.8;") %>
-            <% end %>
-          </div>
-          
-          <div class="field">
-            <%= f.label :avatar, "Browse", class: "file-browse" %><br/>
-            <%= f.file_field :avatar, accept: "image/png, image/jpg, image/jpeg" %>
-          </div>
+      <div class="avatar"> 
+        <div class="field">
+          <% if resource.avatar.attached? %>
+            <%= image_tag(resource.avatar, class: "user-avatar") %>
+          <% else %>
+            <%= image_tag("default-profile.jpg", size: "150x150", class: "user-avatar") %>
+          <% end %>
         </div>
-
-      <div>
-        <div class="email field">
-          <%= f.label :email %><br/>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+        
+        <div class="field">
+          <%= f.label :avatar, "Browse", class: "file-browse" %><br/>
+          <%= f.file_field :avatar, accept: "image/png, image/jpg, image/jpeg" %>
         </div>
-
-        <div class="password field">
-          <%= f.label :password %><br/>
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
-        </div>
-
-        <div class="password-confirm field">
-          <%= f.label :password_confirmation, "Confirm" %><br/>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
-        </div>
-
-        <%= f.fields_for :profile do |p| %>
-          <div class="first-name field">
-            <%= p.label :first_name %><br/>
-            <%= p.text_field :first_name, placeholder: "Required" %>
-          </div>
-
-          <div class="last-name field">
-            <%= p.label :last_name %><br/>
-            <%= p.text_field :last_name, placeholder: "Last name" %>
-          </div>
-
-          <div class="state field">
-            <%= p.label :state %><br/>
-            <%= p.text_field :state, placeholder: "Required" %>
-          </div>
-
-          <div class="suburb field">
-            <%= p.label :suburb %><br/>
-            <%= p.text_field :suburb, placeholder: "Suburb" %>
-          </div>
-
-          <div class="postcode field">
-            <%= p.label :postcode %><br/>
-            <%= p.text_field :postcode, placeholder: "Postcode" %>
-          </div>
-        <% end %>
       </div>
 
-        <div class="actions">
-          <%= f.submit "Sign up" %>
-          <%= render "devise/shared/links" %>
+      <div class="form-row row-cols-2">
+        <div class="col">
+          <!-- nested form to store details in associated profile model  -->
+          <%= f.fields_for :profile do |profile| %>
+            <div class="first-name form-group">
+              <%= profile.label :first_name %><br />
+              <%= profile.text_field :first_name, placeholder: "First name" %>
+            </div>
+
+            <div class="last-name form-group">
+              <%= profile.label :last_name %><br />
+              <%= profile.text_field :last_name, placeholder: "Last name" %>
+            </div>
+
+            <div class="state form-group">
+              <%= profile.label :state %><br />
+              <%= profile.text_field :state, placeholder: "State" %>
+            </div>
+
+            <div class="suburb form-group">
+              <%= profile.label :suburb %><br />
+              <%= profile.text_field :suburb, placeholder: "Suburb" %>
+            </div>
+
+            <div class="postcode form-group">
+              <%= profile.label :postcode %><br />
+              <%= profile.text_field :postcode, placeholder: "Postcode" %>
+            </div>
+          <% end %>
         </div>
-    <% end %>
+
+        <div class="col">
+          <div class="email form-group">
+            <%= f.label :email %><br/>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
+          </div>
+
+          <div class="password form-group">
+            <%= f.label :password, "Password" %><br/>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %><br/>
+          </div>
+
+          <div class="password-confirmation form-group">
+            <%= f.label :password_confirmation, "Confirm Password" %><br/>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+          </div>
+        </div>
+      </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
 </section>

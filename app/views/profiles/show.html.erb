@@ -1,15 +1,22 @@
-<section class="profile-page d-flex flex-column align-items-center">
-    <%= image_tag (@user.avatar_thumbnail) %>
-    <h3>Hi! I'm <%= @profile.first_name %>!</h3>
-    <h3>I'm from<%= @profile.state %>
-    <% if current_user.id == @profile.user_id %>
-        <%= link_to "Edit Profile", edit_user_registration_path %>
-    <% end %>
+<section class="profile d-flex flex-column align-items-center">
+    <section class="profile__info container">
+        <div class="d-flex flex-column align-items-center mt-3">
+            <%= image_tag (@user.avatar_thumbnail) %>
+            <% if current_user.id == @profile.user_id %>
+            <div id="profile-edit" class="d-flex justify-content-center">
+                <%= link_to "Edit Profile", edit_user_registration_path %>
+            </div>
+            <% end %>
+            <div class="text-center">
+                <h3>Hi! I'm <%= @profile.first_name %>!</h3>
+                <h3>I'm from <%= @profile.state %>
+            </div>
+            <p class="w-100 text-center">♥</p> <!-- place holder for heart image -->
+        </div>
+    </section>
 
-    <p>♥</p> <!-- place holder for heart image -->
-
-    <h3>Here's some of my favourite cards!</h3>
-    <div class="cards">
-
-    </div>
+    <section class="fav-cards container">
+        <h3>Here's some of my favourite cards!</h3>
+        <div class="cards"></div>
+    </section>
 </section>

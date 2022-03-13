@@ -11,7 +11,6 @@ class CardsController < ApplicationController
   def search; end
 
   private
-
   def card_params; end
 
   def set_card

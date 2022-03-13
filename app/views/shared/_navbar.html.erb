@@ -1,18 +1,19 @@
+<!-- mobile header w/ search bar & hamburger -->
 <nav class="mobile-header d-flex navbar navbar-expand navbar-light align-items-center justify-content-between">
-        <!-- mobile menu button -->
-        <div class="menu-btn">
-            <div class="menu-btn__burger"></div>
-        </div>
+    <!-- mobile menu button -->
+    <div class="menu-btn">
+        <div class="menu-btn__burger"></div>
+    </div>
 
-        <!-- won't render on root page -->
-        <% unless current_page?(root_path) %>
+    <!-- won't render on root page -->
+    <% unless current_page?(root_path) %>
         <%= form_tag cards_path, :method => "get" do %>
             <%= text_field_tag :query, params[:query], class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
         <% end %>
     <% end %>
 </nav>
 
-<!-- Contains sliding mobile-nav bar -->
+<!-- contains sliding mobile-nav bar -->
 <nav class="mobile-nav">
     <div class="mobile-nav__top">
         <% if current_user %>
@@ -22,6 +23,7 @@
         <% end %>
     </div>
 
+    <!-- nav links block for site navigation -->
     <div class="nav-links"> 
         <%= link_to "Home", root_path, class: "nav-btn" %>
         <%= link_to "Browse", cards_path, class: "nav-btn" %>

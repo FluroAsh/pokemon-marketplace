@@ -51,6 +51,7 @@ body {
 .alert-no-bs {
     @include center;
     position: fixed;
+    z-index: 9;
     top: 60px;
     width: 100%;
     text-align: center;

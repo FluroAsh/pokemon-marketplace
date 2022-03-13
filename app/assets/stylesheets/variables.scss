@@ -18,18 +18,18 @@ $primary-2: #bd9808;
 $secondary: #39549d;
 
 /*-- mixins --*/
-
 @mixin generic-button($width: 100px, $height: 30px, $border-radius: 15px) {
     font-weight: 400;
     width: $width;
     height: $height;
     border: none;
     background: $primary;
-    color: #000;
+    color: darken($primary-2, 20%);
     border-radius: $border-radius;
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
     &:hover {
-        background: lighten($primary-2, 5%);
+        color: $yellow;
+        background: darken($primary-2, 4%);
     }
 }
 
@@ -41,8 +41,21 @@ $secondary: #39549d;
     color: #721c24;
     border-radius: $border-radius;
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+    &:hover {
+        color: #f8d7da;
+        background: darken(#721c24, 4%);
+    }
 }
 
+/* allows us so set width x height easily uniformly or specifically */
+@mixin avatar($size: 150px, $border-color: $secondary) {
+    width: $size;
+    height: $size;
+    border: 3px solid $border-color;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px 0 inset;
+    background: #fff;
+}
 @mixin link-styling {
     color: #fff;
     text-decoration: none;
@@ -70,6 +83,7 @@ $secondary: #39549d;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
 }
+/*--*/
 
 /** effects **/
 .hvr-grow {
