@@ -4,7 +4,7 @@ class Card < ApplicationRecord
   before_save :remove_db_sprite_junk # sanitize data with 'lifecycle hook'
 
   include PgSearch::Model # imports PgSearch library for PSQL searches
-  pg_search_scope :search, against: [:name, :rarity, :card_set_id],
+  pg_search_scope :search, against: [:name, :rarity, :card_set_id, :supertype],
                            associated_against: { card_set: :name }, # allow cross model search against card_set name in card_sets
                            using: { tsearch: { prefix: true } } # allows partial matches (LIKE)
 

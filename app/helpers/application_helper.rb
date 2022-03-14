@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def purge_s_brackets(string)
-    string.gsub(/"|\[|\]/, "")
+    string.gsub(/"|\[|\]/, "") if !string.nil?
   end
 
   def url_lg_sprite(pokedex_num) # backup sprite
@@ -24,6 +24,6 @@ module ApplicationHelper
 
   def remove_sprite_junk(name) # callable version for processing strings in view
     # needs to be iterated upon as set size grows larger (> 1 page)
-    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's/, "").strip
+    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |/i, "").strip
   end
 end

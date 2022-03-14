@@ -10,7 +10,12 @@
             <div class="col-sm top">
                 <!-- if rarity true -->
                 <% if @card.rarity %> 
-                    <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> — <%= purge_s_brackets(@card.subtypes) %></h2> 
+                    <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> 
+                    <!-- append subtypes if it exists -->
+                    <% if @card.subtypes %> 
+                        — <%= purge_s_brackets(@card.subtypes) %>
+                    <% end %> 
+                    </h2> 
                     <div class="row row-cols-2 m-0 pb-3">
                         <div class="col-sm">
                             <div class="row m-0">
@@ -71,6 +76,7 @@
                     </div> 
                 <% end %>
                 <!-- row 2 -->
+                <% if @card.types %>
                 <div class="row row-cols-2 m-0 pb-2">
                     <div class="col-sm">
                         <div class="row m-0">
@@ -78,8 +84,8 @@
                         </div>
                         <div class="row m-0"><p><%= purge_s_brackets(@card.types) %></p></div>
                     </div>
-                    
                 </div>
+                <% end %>
                 <!-- Evolves to/form block -->
                 <!-- row 3 -->
                 <div class="row row-cols-2 m-0 pb-2">
@@ -106,7 +112,7 @@
                         <div class="row m-0">
                             <%= purge_s_brackets(@card.evolves_to) %>
                         </div>
-                        <div class="row m-0">
+                        <div class="row m-0 ">
                             <%= image_tag url_sm_sprite_et(remove_sprite_junk(@card.evolves_to)) %>
                         </div>
                     </div>
@@ -114,6 +120,7 @@
                 </div>
                 <!-- additional info -->
                 <!-- row 4 -->
+                <% if @card.weaknesses || @card.resistances %>
                 <div class="row row-cols-2 m-0 pb-2">
                     <div class="col-sm">
                         <div class="row m-0">
@@ -144,6 +151,7 @@
                         <% end %>
                     </div>
                 </div>
+                <% end %>
                 <!-- rules section -->
                 <!-- row 5 &/or 6 -->
                 <div class="row m-0 pb-2">
@@ -163,7 +171,6 @@
                     <p class="w-100 m-0" style="font-size: 3rem;">♥</p>
                     <p>Favourite</p>
                 </div>
-
                 <div class="row row-cols-2 m-0 justify-content-center">
                     <div class="set-symbol row justify-content-center w-100">
                         <div class="d-flex align-items-center"><%= image_tag "#{@card.card_set.symbol}", height: "30px", class: "pr-2" %></div>
