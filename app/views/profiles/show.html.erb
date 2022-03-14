@@ -2,7 +2,7 @@
     <section class="profile__info container">
         <div class="d-flex flex-column align-items-center mt-3">
             <%= image_tag (@user.avatar_thumbnail) %>
-            <% if current_user.id == @profile.user_id %>
+            <% if current_user && current_user.id == @profile.user_id %>
             <div id="profile-edit" class="d-flex justify-content-center">
                 <%= link_to "Edit Profile", edit_user_registration_path %>
             </div>

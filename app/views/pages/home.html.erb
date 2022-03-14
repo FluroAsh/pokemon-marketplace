@@ -4,7 +4,7 @@
         <!-- search form -->
         <div class="home__search-wrapper md-form active-cyan-2 mb-1">
             <%= form_tag cards_path, :method => "get" do %>
-                 <%= text_field_tag :query, params[:query], class: "home__search-bar form-control", placeholder: "Search for a card" %>
+                <%= text_field_tag :query, params[:query], title: "Search bar", name: "search bar", tabindex: 1, class: "home__search-bar form-control", placeholder: "Search for a card" %>
             <% end %>
         </div>
         <p class="hint-text"> Try searching for a card set, or rarity! — <i id="hint">eg: ('Team Rocket' or 'Rare Holo')</i></p>

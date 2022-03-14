@@ -5,24 +5,25 @@ module ApplicationHelper
     string.gsub(/\s.+/, "") if string.respond_to?(:to_s)
   end
 
-  def url_lg_sprite(pokedex_num)
+  def purge_s_brackets(string)
+    string.gsub(/"|\[|\]/, "")
+  end
+
+  def url_lg_sprite(pokedex_num) # backup sprite
     "https://www.pkparaiso.com/imagenes/xy/sprites/pokemon/#{pokedex_num}.png"
   end
 
   def url_sm_sprite_et(name) # evolves_to is arr of strings in postgres
-    # gsub removes phantom \'s
-    "https://img.pokemondb.net/sprites/sword-shield/icon/#{name.gsub('"', "").downcase}.png"
+    # gsub removes phantom \'s & square brackets
+    purge_s_brackets("https://img.pokemondb.net/sprites/black-white/anim/normal/#{name.gsub('"', "").downcase}.gif")
   end
 
   def url_sm_sprite_ef(name) # evolves from with url
-    "https://img.pokemondb.net/sprites/sword-shield/icon/#{name.gsub('"', "").downcase}.png"
+    purge_s_brackets("https://img.pokemondb.net/sprites/black-white/anim/normal/#{name.gsub('"', "").downcase}.gif")
   end
 
-  ## Add helper method to remove 'dark' and other various prefixes from the pokemon's name
+  def remove_sprite_junk(name) # callable version for processing strings in view
+    # needs to be iterated upon as set size grows larger (> 1 page)
+    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's/, "").strip
+  end
 end
-
-# <%= image_tag "#{get_mini_sprite(card.evolves_to[(/"(.*?)"/)].downcase)}", style: "height:50px;"%>
-# <% p "#{get_mini_sprite(card.evolves_to[(/"(.*?)"/)].downcase)}"%>
-
-## Prev
-# <%= image_tag "#{get_mini_sprite(card.evolves_to)}", style: "height:50px;"%>

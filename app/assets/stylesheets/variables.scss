@@ -56,6 +56,7 @@ $secondary: #39549d;
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px 0 inset;
     background: #fff;
 }
+
 @mixin link-styling {
     color: #fff;
     text-decoration: none;
@@ -70,6 +71,21 @@ $secondary: #39549d;
 }
 
 @mixin devise-form($width: 600px) {
+    height: 100%;
+    max-width: 100%;
+    width: $width;
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    margin: 0 0 1rem;
+    color: #fff;
+    background: $secondary;
+    border: 4px solid $primary;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+}
+
+@mixin styled-container($width: 600px) {
     height: 100%;
     max-width: 100%;
     width: $width;

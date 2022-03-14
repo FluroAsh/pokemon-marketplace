@@ -1,6 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show]
 
+  def new
+    @profile = Profile.new
+  end
+
   def create
     @profile = Profile.new(profile_params) # save validation handled by devise
   end
@@ -11,7 +15,7 @@ class ProfilesController < ApplicationController
 
   def set_profile
     if Profile.where(id: params[:id]).present? # error handling to see if associated user & profile exists
-      @profile = Profile.find(params[:id])
+      @profile = Profile(id: params[:id])
       @user = User.find(params[:id]) # finds the user_id associated with the profile
     else
       flash[:alert] = "That user does not exist"

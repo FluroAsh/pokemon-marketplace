@@ -1,14 +1,14 @@
 <!-- mobile header w/ search bar & hamburger -->
 <nav class="mobile-header d-flex navbar navbar-expand navbar-light align-items-center justify-content-between">
     <!-- mobile menu button -->
-    <div class="menu-btn">
+    <div class="menu-btn" tabindex=0 alt="menu button" name="menu button" role="button">
         <div class="menu-btn__burger"></div>
     </div>
 
     <!-- won't render on root page -->
     <% unless current_page?(root_path) %>
         <%= form_tag cards_path, :method => "get" do %>
-            <%= text_field_tag :query, params[:query], class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
+            <%= text_field_tag :query, params[:query], title: "Search bar", name: "search bar", tabindex: 0, class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
         <% end %>
     <% end %>
 </nav>
@@ -17,7 +17,7 @@
 <nav class="mobile-nav">
     <div class="mobile-nav__top">
         <% if current_user %>
-            <%= image_tag(current_user.avatar_thumbnail, class: "mobile-nav__top__avatar") %> <!-- manual resize for default image -->
+            <%= image_tag(current_user.avatar_thumbnail, alt: "profile avatar", class: "mobile-nav__top__avatar") %> <!-- manual resize for default image -->
             <h3><%= current_user.profile.first_name %></h3>
             <%= link_to "Edit Profile", edit_user_registration_path %>
         <% end %>
