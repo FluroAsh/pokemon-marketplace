@@ -4,7 +4,6 @@
 .mobile-header {
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 999;
     width: 100%;
     height: 60px;
@@ -12,7 +11,11 @@
     border-bottom: 4px solid $secondary;
     &__search-bar {
         // TODO: Fix search bar on small size, shrink on small...
-        max-width: 300px;
+        max-width: 100%;
+        // min-width: 33%;
+        input {
+            min-width: 33%;
+        }
         border-radius: 15px;
         background-image: url('./icons8-pokeball-48.png'); // asset from icons8.com
         background-size: 25px 25px;

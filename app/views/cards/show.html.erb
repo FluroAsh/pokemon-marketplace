@@ -165,8 +165,9 @@
                 </div>
 
                 <div class="row row-cols-2 m-0 justify-content-center">
-                    <div class="row justify-content-center">
-                        <div class="d-flex align-items-center"><%= image_tag "#{@card.card_set.symbol}", height: "30px", class: "pr-2 pb-1" %></div><p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
+                    <div class="set-symbol row justify-content-center w-100">
+                        <div class="d-flex align-items-center"><%= image_tag "#{@card.card_set.symbol}", height: "30px", class: "pr-2" %></div>
+                        <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
                     </div>
                 </div>               
             </div>

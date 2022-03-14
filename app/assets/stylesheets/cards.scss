@@ -114,6 +114,10 @@
         font-weight: 700;
         margin: 0;
     }
+    .set-symbol {
+        max-width: 100%;
+        min-width: 300px;
+    }
 }
 
 /* table (mobile + large) for listings */
@@ -175,7 +179,7 @@
         content: "";
         margin-left: 1rem;
         background: $primary;
-        height: 560px;
+        height: 500px;
         width: 4px;
     }
 }
