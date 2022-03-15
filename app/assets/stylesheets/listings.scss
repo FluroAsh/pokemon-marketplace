@@ -1,3 +1,24 @@
 // Place all the styles related to the listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import 'variables';
+
+.listing {
+    max-width: 100%;
+    min-height: calc(100% - 92px);
+    &__details {
+        @include styled-container($width: 1000px);
+        textarea {
+            resize: none;
+        }
+    }
+    #listing_condition {
+        max-width: 100%;
+        width: 100px;
+        height: 50px;
+    }
+    img {
+        max-width: 250px;
+    }
+}

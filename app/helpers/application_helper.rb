@@ -26,4 +26,32 @@ module ApplicationHelper
     # needs to be iterated upon as set size grows larger (> 1 page)
     name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |/i, "").strip
   end
+
+  def card_prices(id)
+    card = Pokemon::Card.find(id)
+    return card.cardmarket.prices
+    ## // Object Structure //
+    #  @average_sell_price
+    #  @avg1
+    #  @avg30
+    #  @avg7
+    #  @german_pro_low
+    #  @low_price
+    #  @low_price_ex_plus
+    #  @reverse_holo_avg1
+    #  @reverse_holo_avg30
+    #  @reverse_holo_avg7
+    #  @reverse_holo_low
+    #  @reverse_holo_sell
+    #  @reverse_holo_trend
+    #  @suggested_price
+    #  @trend_price
+    ## //
+  end
+
+  def format_price(price)
+    # sprintf ('string, print, format' basically...) takes 2 arguments, the format and our value
+    # https://apidock.com/ruby/Kernel/sprintf
+    sprintf("$%2.2f", (price/100.0)) 
+  end
 end

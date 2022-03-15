@@ -1,0 +1,181 @@
+<section class="trading-card__details">
+    <div class="row row-cols-sm-1 row-cols-md-2 m-0 ">
+        <!-- main card image -->
+        <div class="col-sm d-flex align-items-center p-card">
+            <%= image_tag @card.large_image, alt: @card.name, class: "large-card", style: "max-width: 100%;" %>
+        </div>
+        <!--  main text body -->
+        <!-- row 1 -->
+        <div class="col-sm top">
+            <!-- if rarity true -->
+            <% if @card.rarity %> 
+                <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> 
+                <!-- append subtypes if it exists -->
+                <% if @card.subtypes %> 
+                    — <%= purge_s_brackets(@card.subtypes) %>
+                <% end %> 
+                </h2> 
+                <div class="row row-cols-2 m-0 pb-3">
+                    <div class="col-sm">
+                        <div class="row m-0">
+                            <h2 class="card-name"><%= @card.name %></h2>
+                        </div>
+                        <div class="row m-0">
+                            <h3 class="sub-heading"><%= @card.rarity %></h2>
+                        </div>
+                    </div>
+                    <% if @prices.average_sell_price %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average (Weekly)</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>  
+            <% else %>
+            <!-- if rarity false -->
+                <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> — <%= purge_s_brackets(@card.subtypes) %></h2> 
+                <div class="row row-cols-2 m-0 pb-3">
+                    <div class="col-sm">
+                        <div class="row m-0">
+                            <h2 class="card-name"><%= @card.name %></h2>
+                        </div>
+                    </div>
+                    <% if @prices.average_sell_price %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average (Weekly)</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
+                            </div>
+                        </div>
+                    <% end %>
+                </div> 
+            <% end %>
+            <!-- row 2 -->
+            <% if @card.types %>
+            <div class="row row-cols-2 m-0 pb-2">
+                <div class="col-sm">
+                    <div class="row m-0">
+                        <p class="sub-heading">Type</p>
+                    </div>
+                    <div class="row m-0"><p><%= purge_s_brackets(@card.types) %></p></div>
+                </div>
+            </div>
+            <% end %>
+            <!-- Evolves to/form block -->
+            <!-- row 3 -->
+            <div class="row row-cols-2 m-0 pb-2">
+                    <!-- evolves from? -->
+                <% if @card.evolves_from %>
+                <div class="col-sm justify-content-center">
+                    <div class="row m-0">
+                        <p class="sub-heading">Evolves from</p>
+                    </div>
+                    <div class="row m-0">
+                        <%= remove_sprite_junk(@card.evolves_from) %>
+                    </div>
+                    <div class="row m-0">
+                        <%= image_tag url_sm_sprite_ef(remove_sprite_junk(@card.evolves_from)), title: remove_sprite_junk(@card.evolves_from) %>
+                    </div>
+                </div>
+                <% end %>
+                <!-- evolves to? -->
+                <% if @card.evolves_to %>
+                <div class="col-sm">
+                    <div class="row m-0">
+                        <p class="sub-heading">Evolves to</p>
+                    </div>
+                    <div class="row m-0">
+                        <%= remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
+                    </div>
+                    <div class="row m-0 ">
+                        <%= image_tag url_sm_sprite_et(remove_sprite_junk(@card.evolves_to)), title: remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            <!-- additional info -->
+            <!-- row 4 -->
+            <% if @card.weaknesses || @card.resistances %>
+            <div class="row row-cols-2 m-0 pb-2">
+                <div class="col-sm">
+                    <div class="row m-0">
+                        <p class="sub-heading">Weakness</p>
+                    </div>
+                    <% if @card.weaknesses %>
+                        <div class="row m-0">
+                            <%= @card.weaknesses %>
+                        </div>
+                    <% else %>
+                        <div class="row m-0">
+                            N/A
+                        </div>
+                    <% end %>
+                </div>
+                <div class="col-sm">
+                    <div class="row m-0 ">
+                        <p class="sub-heading">Resistance</p>
+                    </div>
+                    <% if @card.resistances %>
+                        <div class="row m-0 ">
+                            <%= @card.resistances %>
+                        </div>
+                    <% else %>
+                        <div class="row m-0 ">
+                            None
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+            <!-- rules section -->
+            <!-- row 5 &/or 6 -->
+            <div class="row m-0 pb-2">
+                <div class="col-sm"><%= @card.rules %></div>
+            </div> 
+            <!-- flavor text section -->
+            <!-- row 5 &/or 6 -->
+            <% if @card.flavor_text %>
+            <div class="row m-0 pb-2">
+                <div class="col-sm">
+                    <p class="flavor-text"><i>"<%= @card.flavor_text %>"</i></p>
+                </div>
+            </div>
+            <% end %>
+            <!-- !! TEMP placeholder for favourites button -->
+            <div class="row text-center m-0 my-3 justify-content-center">
+                <p class="w-100 m-0" style="font-size: 3rem;">♥</p>
+                <p>Favourite</p>
+            </div>
+            <div class="row row-cols-2 m-0 justify-content-center">
+                <div class="set-symbol row justify-content-center w-100">
+                    <div class="d-flex align-items-center"><%= image_tag "#{@card.card_set.symbol}", height: "30px", class: "pr-2" %></div>
+                    <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
+                </div>
+            </div>               
+        </div>
+    </div>
+</section>

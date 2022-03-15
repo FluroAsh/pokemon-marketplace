@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders # orders archived, no dependency
+  has_many :orders # orders archived, no dependency on user
   has_one :profile, dependent: :destroy
   has_many :listings, dependent: :destroy
   has_many :favourites, dependent: :destroy

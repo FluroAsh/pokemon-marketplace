@@ -1,4 +1,4 @@
-<section class="profile d-flex flex-column align-items-center">
+<section class="profile d-flex flex-column align-items-center justify-content-between">
     <section class="profile__info container">
         <div class="d-flex flex-column align-items-center mt-3">
             <%= image_tag (@user.avatar_thumbnail) %>
@@ -15,8 +15,8 @@
         </div>
     </section>
 
-    <section class="fav-cards container">
-        <h3>Here's some of my favourite cards!</h3>
-        <div class="cards"></div>
+    <section class="fav-cards container d-flex flex-column align-items-center">
+        <h3 class="text-center">Here's some of my favourite cards!</h3>
+        <div class="cards">Cards Placeholder</div>
     </section>
 </section>

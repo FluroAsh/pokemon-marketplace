@@ -1,4 +1,5 @@
 class Card < ApplicationRecord
+  include ApplicationHelper # imports ApplicationHelper for card_prices method
   belongs_to :card_set
   has_many :listings
   before_save :remove_db_sprite_junk # sanitize data with 'lifecycle hook'
@@ -16,32 +17,9 @@ class Card < ApplicationRecord
     end
   end
 
-  def card_prices(id)
-    card = Pokemon::Card.find(id)
-    return card.cardmarket.prices
-    ## // Object Structure //
-    #  @average_sell_price
-    #  @avg1
-    #  @avg30
-    #  @avg7
-    #  @german_pro_low
-    #  @low_price
-    #  @low_price_ex_plus
-    #  @reverse_holo_avg1
-    #  @reverse_holo_avg30
-    #  @reverse_holo_avg7
-    #  @reverse_holo_low
-    #  @reverse_holo_sell
-    #  @reverse_holo_trend
-    #  @suggested_price
-    #  @trend_price
-    ## //
-  end
-
   private
 
   def remove_db_sprite_junk # isolate pokemon name, then remove trailing words if uncaught
-    self.sprite_name = self.sprite_name
-      .gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's/, "").strip
+    self.sprite_name = self.sprite_name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's/i, "").strip
   end
 end

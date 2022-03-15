@@ -1,188 +1,9 @@
+<!-- encapsulates card_details & table element -->
 <div class="trading-card d-flex flex-column align-items-center pt-3">
-    <section class="trading-card__details">
-        <div class="row row-cols-sm-1 row-cols-md-2 m-0 ">
-            <!-- main card image -->
-            <div class="col-sm d-flex align-items-center p-card">
-                <%= image_tag @card.large_image, alt: @card.name, class: "large-card", style: "max-width: 100%;" %>
-            </div>
-            <!--  main text body -->
-            <!-- row 1 -->
-            <div class="col-sm top">
-                <!-- if rarity true -->
-                <% if @card.rarity %> 
-                    <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> 
-                    <!-- append subtypes if it exists -->
-                    <% if @card.subtypes %> 
-                        — <%= purge_s_brackets(@card.subtypes) %>
-                    <% end %> 
-                    </h2> 
-                    <div class="row row-cols-2 m-0 pb-3">
-                        <div class="col-sm">
-                            <div class="row m-0">
-                                <h2 class="card-name"><%= @card.name %></h2>
-                            </div>
-                            <div class="row m-0">
-                                <h3 class="sub-heading"><%= @card.rarity %></h2>
-                            </div>
-                        </div>
-                        <% if @prices.average_sell_price %>
-                            <div class="col-sm">
-                                <div class="row m-0">
-                                    <h3 class="font-weight-bold">Average</h3>
-                                </div>
-                                <div class="row m-0">
-                                    <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
-                                </div>
-                            </div>
-                        <% else %>
-                            <div class="col-sm">
-                                <div class="row m-0">
-                                    <h3 class="font-weight-bold">Average (Weekly)</h3>
-                                </div>
-                                <div class="row m-0">
-                                    <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>  
-                <% else %>
-                <!-- if rarity false -->
-                    <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> — <%= purge_s_brackets(@card.subtypes) %></h2> 
-                    <div class="row row-cols-2 m-0 pb-3">
-                        <div class="col-sm">
-                            <div class="row m-0">
-                                <h2 class="card-name"><%= @card.name %></h2>
-                            </div>
-                        </div>
-                        <% if @prices.average_sell_price %>
-                            <div class="col-sm">
-                                <div class="row m-0">
-                                    <h3 class="font-weight-bold">Average</h3>
-                                </div>
-                                <div class="row m-0">
-                                    <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
-                                </div>
-                            </div>
-                        <% else %>
-                            <div class="col-sm">
-                                <div class="row m-0">
-                                    <h3 class="font-weight-bold">Average (Weekly)</h3>
-                                </div>
-                                <div class="row m-0">
-                                    <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div> 
-                <% end %>
-                <!-- row 2 -->
-                <% if @card.types %>
-                <div class="row row-cols-2 m-0 pb-2">
-                    <div class="col-sm">
-                        <div class="row m-0">
-                            <p class="sub-heading">Type</p>
-                        </div>
-                        <div class="row m-0"><p><%= purge_s_brackets(@card.types) %></p></div>
-                    </div>
-                </div>
-                <% end %>
-                <!-- Evolves to/form block -->
-                <!-- row 3 -->
-                <div class="row row-cols-2 m-0 pb-2">
-                     <!-- evolves from? -->
-                    <% if @card.evolves_from %>
-                    <div class="col-sm justify-content-center">
-                        <div class="row m-0">
-                            <p class="sub-heading">Evolves from</p>
-                        </div>
-                        <div class="row m-0">
-                            <%= @card.evolves_from %>
-                        </div>
-                        <div class="row m-0">
-                            <%= image_tag url_sm_sprite_ef(remove_sprite_junk(@card.evolves_from)) %>
-                        </div>
-                    </div>
-                    <% end %>
-                    <!-- evolves to? -->
-                    <% if @card.evolves_to %>
-                    <div class="col-sm">
-                        <div class="row m-0">
-                            <p class="sub-heading">Evolves to</p>
-                        </div>
-                        <div class="row m-0">
-                            <%= purge_s_brackets(@card.evolves_to) %>
-                        </div>
-                        <div class="row m-0 ">
-                            <%= image_tag url_sm_sprite_et(remove_sprite_junk(@card.evolves_to)) %>
-                        </div>
-                    </div>
-                    <% end %>
-                </div>
-                <!-- additional info -->
-                <!-- row 4 -->
-                <% if @card.weaknesses || @card.resistances %>
-                <div class="row row-cols-2 m-0 pb-2">
-                    <div class="col-sm">
-                        <div class="row m-0">
-                            <p class="sub-heading">Weakness</p>
-                        </div>
-                        <% if @card.weaknesses %>
-                            <div class="row m-0">
-                                <%= @card.weaknesses %>
-                            </div>
-                        <% else %>
-                            <div class="row m-0">
-                                N/A
-                            </div>
-                        <% end %>
-                    </div>
-                    <div class="col-sm">
-                        <div class="row m-0 ">
-                            <p class="sub-heading">Resistance</p>
-                        </div>
-                        <% if @card.resistances %>
-                            <div class="row m-0 ">
-                                <%= @card.resistances %>
-                            </div>
-                        <% else %>
-                            <div class="row m-0 ">
-                                None
-                            </div>
-                        <% end %>
-                    </div>
-                </div>
-                <% end %>
-                <!-- rules section -->
-                <!-- row 5 &/or 6 -->
-                <div class="row m-0 pb-2">
-                    <div class="col-sm"><%= @card.rules %></div>
-                </div> 
-                <!-- flavor text section -->
-                <!-- row 5 &/or 6 -->
-                <% if @card.flavor_text %>
-                <div class="row m-0 pb-2">
-                    <div class="col-sm">
-                        <p class="flavor-text"><i>"<%= @card.flavor_text %>"</i></p>
-                    </div>
-                </div>
-                <% end %>
-                <!-- !! TEMP placeholder for favourites button -->
-                <div class="row text-center m-0 my-3 justify-content-center">
-                    <p class="w-100 m-0" style="font-size: 3rem;">♥</p>
-                    <p>Favourite</p>
-                </div>
-                <div class="row row-cols-2 m-0 justify-content-center">
-                    <div class="set-symbol row justify-content-center w-100">
-                        <div class="d-flex align-items-center"><%= image_tag "#{@card.card_set.symbol}", height: "30px", class: "pr-2" %></div>
-                        <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
-                    </div>
-                </div>               
-            </div>
-        </div>
-    </section>
-
-    <!-- loop through all (already set for the show method -- params passed by url) -->
-    <!-- mobile table -->
+    <!-- partial for card details element -->
+    <%= render "card_details" %>
+    <!-- >>> loop through all (already set for the show method -- params passed by url) <<< -->
+    <!-- listings table -->
     <section class="listing-table listing-table--mobile mb-3">
         <table class="table table-striped m-0">
             <thead class="thead-dark">
@@ -200,12 +21,8 @@
                     <td scope="col-sm">Price</td>
                     <td scope="col-sm">Condition</td>
                     <td class="d-flex justify-content-around" scope="col-sm">
-                        <div>
-                        <%= link_to "Buy", class: "" %>
-                        </div>
-                        <div>
-                        <%= link_to "View" %>
-                        </div>
+                        <%= button_to "Buy", card_path(@card.id), class: "btn btn-primary mr-1" %>
+                        <%= button_to "View", card_path(@card.id), class: "btn btn-success" %>
                     </td>
                 </tr>
             </tbody>
@@ -213,31 +30,54 @@
     </section>
 
     <!-- large device table -->
-     <section class="listing-table listing-table--large mb-3">
-        <table class="table m-0">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col-sm">Seller Name</th>
-                    <th scope="col-sm">Price</th>
-                    <th scope="col-sm">Description</th>
-                    <th scope="col-sm">Condition</th>
-                    <th scope="col-sm">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <!-- dummy row -->
-                    <td scope="col-sm">Seller Name</td>
+    <section class="listing-table listing-table--large mb-3">
+        <% if @listings %>
+            <table class="table m-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col-sm">Seller Name</th>
+                        <th scope="col-sm">Price</th>
+                        <th scope="col-sm">Description</th>
+                        <th scope="col-sm">Condition</th>
+                        <th scope="col-sm">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @listings.each do |listing| %>
+                        <tr>
+                            <td scope="col-sm" class="d-flex justify-content-between"><%= "#{listing.user.profile.first_name} #{listing.user.profile.last_name}" %><%= image_tag listing.user.avatar, style: "margin-left:0.5rem;border-radius:5px;", size: "65x65", alt: "profile-avatar" if listing.user.avatar.attached? %></td>
+                            <td scope="col-sm" style="width:100px;"><%= format_price(listing.price) %></td>
+                            <td scope="col-sm"><%= listing.description %></td>
+                            <td scope="col-sm" style="width:120px;"><%= condition_name(listing.condition) %></td>
+                            <td class="d-flex justify-content-around" scope="col-sm">
+                                <%= button_to "Buy", card_path(@card.id), class: "btn btn-primary ml-1" if current_user %>
+                                <%= button_to "View", card_path(@card.id), class: "btn btn-success" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% elsif @listings.empty? %> <!-- fix so we create empty row/div if there's no listings -->
+            <% p ">>>>>>>> #{@listings.empty?}" %>
+            <table class="table m-0">
+                <thead class="dark">
+                    <tr>
+                        <th scope="col-sm">Seller Name</th>
+                        <th scope="col-sm">Price</th>
+                        <th scope="col-sm">Description</th>
+                        <th scope="col-sm">Condition</th>
+                        <th scope="col-sm">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td class="d-flex flex-row justify-content-between" scope="col-sm">Seller Name</td>
                     <td scope="col-sm">Price</td>
-                    <td scope="col-sm">Description</td>
                     <td scope="col-sm">Condition</td>
-                    <td class="d-flex justify-content-around" scope="col-sm">
-                        <%= link_to "Buy" %>
-                        <%= link_to "View" %>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    <div class="empty-row" style="background:#fff;width:100%;height:55px;">
+                    </div>
+                </tbody>
+            </table>
+        <% end %>
     </section>
 </div>
 

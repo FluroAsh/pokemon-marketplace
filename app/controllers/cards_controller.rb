@@ -7,8 +7,7 @@ class CardsController < ApplicationController
     # ^^^ breaks the index page, but is faster on profile page...
     # doesn't need to load it on every SHOW CARD
     if @cards.count == 0
-      flash[:alert] = "No cards found, please try again"
-      redirect_to root_path
+        redirect_to root_path, alert: "😥 Couldn't find that card, try again"
     end
   end
 
@@ -23,9 +22,10 @@ class CardsController < ApplicationController
     begin
       @card = Card.find(params[:id])
       @prices = @card.card_prices(@card.id) # calls API price data using model
-      @listings = Listing.where(card_id: @card.id).order(created_at: :desc)
     rescue
-      retry
+      redirect_to root_path, alert: "😥 Couldn't find that card, try again"
     end
+    # set listings for the listings table
+    @listings = Listing.where(card_id: @card.id, sold: false).order(created_at: :desc)
   end
 end

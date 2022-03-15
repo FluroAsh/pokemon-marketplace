@@ -8,7 +8,7 @@
     <!-- won't render on root page -->
     <% unless current_page?(root_path) %>
         <%= form_tag cards_path, :method => "get" do %>
-            <%= text_field_tag :query, params[:query], title: "Search bar", tabindex: 0, class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
+            <%= text_field_tag :query, params[:query], title: "Search bar", autocomplete: "off", tabindex: 0, class: "mobile-header__search-bar form-control", placeholder: "Search for a card" %>
         <% end %>
     <% end %>
 </nav>

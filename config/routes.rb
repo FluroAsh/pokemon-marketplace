@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # listing routes
   get "listings", to: "listings#index", as: "listings"
   post "listings", to: "listings#create"
-  get "listings/new", to: "listings#new", as: "new_listing"
+  get "listings/new/:id", to: "listings#new", as: "new_listing"
   get "listings/:id", to: "listings#show", as: "listing"
   put "listings/:id", to: "listings#update"
   patch "listings/:id", to: "listings#update"
