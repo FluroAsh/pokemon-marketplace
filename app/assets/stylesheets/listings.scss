@@ -66,7 +66,7 @@
     .set-symbol {
         align-items: center;
         margin-top: 1rem;
-        max-width: 100%;
+        width: 100%;
         min-width: 300px;
     }
 }
@@ -102,7 +102,7 @@
     .listing-avatar:hover {
         opacity: 80%;
     }
-       .set-text {
+    .set-text {
         font-weight: 700;
         margin: 0;
     }
@@ -112,7 +112,11 @@
         max-width: 100%;
         min-width: 300px;
     }
-
+    .delete-btn {
+        @include warning-button;
+        width: 100px;
+        height: 30px;
+    }
 }
 
 

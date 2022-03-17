@@ -95,12 +95,17 @@
                     </div>
                 </div>
             <% end %>
-                <div class="row row-cols-2 m-0 d-flex justify-content-center">
+                <div class="row row-cols-sm-1 row-cols-md-2 m-0 d-flex justify-content-center">
+                    <% if current_user && current_user.id == @listing.user_id %>
+                        <div class="row justify-content-center">
+                            <%= button_to "Delete", @listing, method: :delete, data: { confirm: "Are you sure?" }, class: "delete-btn" %>
+                        </div>
+                    <% end %>
                     <div class="set-symbol row w-100">
                         <div class=""><%= image_tag "#{@card.card_set.symbol}", alt: "set-symbol", height: "30px", class: "pr-2" %></div>
                         <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
                     </div>
-                </div>
+                <div>
             </div>
         </div>             
     </div>

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get "listings", to: "listings#index", as: "listings"
   post "listings", to: "listings#create"
   get "listings/new/:card_id", to: "listings#new", as: "new_listing" 
-  get "listing/:listing_id", to: "listings#show", as: "listing"
-  put "listing/:listing_id", to: "listings#update"
-  patch "listing/:listing_id", to: "listings#update"
+  get "listings/:listing_id", to: "listings#show", as: "listing"
+  put "listings/:listing_id", to: "listings#update"
+  patch "listings/:listing_id", to: "listings#update"
   delete "listings/:listing_id", to: "listings#destroy"
   get "listings/edit/:listing_id/:card_id", to: "listings#edit", as: "edit_listing" # requires listing_id and card_id incase of fail
   # profiles

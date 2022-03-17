@@ -51,6 +51,8 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    @listing.destroy
+    redirect_to cards_path
   end
 
   private
