@@ -14,14 +14,14 @@
                 <% @listings.each do |listing| %>
                     <tr>
                         <td scope="col-sm"><%= "#{listing.user.profile.first_name} #{listing.user.profile.last_name}" %></td>
-                        <td scope="col-sm"><%= format_price(listing.price) %></td>
+                        <td scope="col-sm">$<%= format_price(listing.price) %></td>
                         <td scope="col-sm" style="font-weight:500;"><%= format_condition(listing.condition) %></td>
                         <td scope="col-sm" style="border-left: 1px solid #dee2e6;">
                             <div>
                                 <%= button_to "Buy", card_path(@card.id), class: "btn btn-primary", style: "min-width:100%;width:80px;" if current_user && current_user.id != listing.user_id %> <!-- TO:DO Redirect to stripe checkout -->
                                 <%= button_to "View", listing_path(listing.id), method: :get, class: "btn btn-success mt-1", style: "min-width:100%;width:80px;" %> <!-- override default post method -->
                                 <% if current_user && current_user.id == listing.user_id %>
-                                    <%= button_to "Edit", edit_listing_path(listing_id: listing.id, card_id: @card.id ), method: :get, class: "btn btn-warning mt-1", style: "min-width:100%;width:60px;" %> <!-- override default post method -->
+                                    <%= button_to "Edit", edit_listing_path(listing_id: listing.id, card_id: @card.id), method: :get, class: "btn btn-warning mt-1", style: "min-width:100%;width:60px;" %> <!-- override default post method -->
                                 <% end %>
                             </div>
                         </td>

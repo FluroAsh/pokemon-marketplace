@@ -1,4 +1,6 @@
 module SeedHelper
+
+    ## Can be moved to card model as a callback (before_save)
     def convert_pdex_num(pdex_num) # removes square brackets & converts to 3 digit (000) format
         if pdex_num != nil
             national_pdex_nums = ("%03d" % "#{(pdex_num.first.to_s.gsub("/\[]\/", "")).to_i}") 

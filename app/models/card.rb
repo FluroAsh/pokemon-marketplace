@@ -19,7 +19,8 @@ class Card < ApplicationRecord
 
   private
 
+  # sanitize data here (move methods from seed_helper)
   def remove_db_sprite_junk # isolate pokemon name, then remove trailing words if uncaught
-    self.sprite_name = self.sprite_name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's/i, "").strip
+    self.sprite_name = self.sprite_name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| Gl|Detective | V|Alolan |Brock's|Misty's |/i, "").strip
   end
 end

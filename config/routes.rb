@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
   root to: "pages#home"
   devise_for :users
-  # cards 
+  # cards
   get "cards", to: "cards#index", as: "cards"
   get "cards/:card_id", to: "cards#show", as: "card"
   # listings
   get "listings", to: "listings#index", as: "listings"
   post "listings", to: "listings#create"
-  get "listings/new/:card_id", to: "listings#new", as: "new_listing"
+  get "listings/new/:card_id", to: "listings#new", as: "new_listing" 
   get "listing/:listing_id", to: "listings#show", as: "listing"
-  put "listings/:listing_id", to: "listings#update"
-  patch "listings/:listing_id", to: "listings#update"
+  put "listing/:listing_id", to: "listings#update"
+  patch "listing/:listing_id", to: "listings#update"
   delete "listings/:listing_id", to: "listings#destroy"
-  get "listings/edit/:listing_id/:card_id", to: "listings#edit", as: "edit_listing"
-  # profiles 
+  get "listings/edit/:listing_id/:card_id", to: "listings#edit", as: "edit_listing" # requires listing_id and card_id incase of fail
+  # profiles
   get "profiles/:id", to: "profiles#show", as: "profile"
-  get "restricted", to: "pages#restricted"
   # favourites
   post "favourites", to: "favourites#create"
   get "favourites/new", to: "listings#new", as: "new_favourite"

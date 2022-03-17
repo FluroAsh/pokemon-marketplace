@@ -1,5 +1,11 @@
 @import 'variables';
 
+.card-name {
+    max-width: 100%;
+    min-width: 190px;
+    font-weight: 900;
+}
+
 // ** listing form **//
 .listing {
     max-width: 100%;
@@ -43,23 +49,12 @@
             max-width: 450px;
         }
     }
-    .card-name {
-        max-width: 100%;
-        min-width: 190px;
-        font-weight: 900;
-    }
     .listing-form {
         padding: 1rem;
     }
     .set-text {
         font-weight: 700;
         margin: 0;
-    }
-    .set-symbol {
-        align-items: center;
-        margin-top: 1rem;
-        max-width: 100%;
-        min-width: 300px;
     }
     .prices {
         padding: 0.5rem;
@@ -68,9 +63,58 @@
     .sprite {
         @include center;
     }
+    .set-symbol {
+        align-items: center;
+        margin-top: 1rem;
+        max-width: 100%;
+        min-width: 300px;
+    }
 }
 
 // ** listing show **//
+.listing-show {
+    max-width: 100%;
+    min-height: calc(100% - 92px);
+    display: flex;
+    justify-content: center;
+    &__container {
+        @include styled-container($width: 1000px);
+        padding: 0;
+    }
+    .listing-avatar {
+        @include avatar($border-color: $primary);
+    }
+    .avatar-name {
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__name {
+            font-size: 1.25rem;
+            padding-top: 5px;
+            font-weight: 600;
+        }
+    }
+    .flavor-text {
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    .listing-avatar:hover {
+        opacity: 80%;
+    }
+       .set-text {
+        font-weight: 700;
+        margin: 0;
+    }
+    .set-symbol {
+        @include center;
+        margin-top: 1rem;
+        max-width: 100%;
+        min-width: 300px;
+    }
+
+}
+
 
 @media screen and(max-width: 767px) {
     // 1 col
@@ -90,6 +134,9 @@
     }
     .name-avg {
         text-align: center;
+    }
+    .set-text {
+        font-size: 1.5rem;
     }
 }
 
@@ -114,6 +161,13 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+    .show-avatar {
+        display: flex;
+        align-items: center;
+    }
+    .set-text {
+        font-size: 1.75rem;
     }
 }
 

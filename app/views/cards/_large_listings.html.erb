@@ -20,7 +20,7 @@
                                 <%= image_tag listing.user.avatar, style: "margin-left:0.5rem;border-radius:5px;", size: "65x65", alt: "profile-avatar" if listing.user.avatar.attached? %>
                             </div>
                         </td>
-                        <td scope="col-sm" style=width:100px;"><%= format_price(listing.price) %></td>
+                        <td scope="col-sm" style="width:100px;">$ <%= format_price(listing.price) %></td>
                         <td scope="col-sm"><%= listing.description %></td>
                         <td scope="col-sm" style="width:120px;font-weight:500;"><%= format_condition(listing.condition) %></td>
                         <td scope="col-sm" aria-label="buttons column body" style="width:200px;border-left: 1px solid #dee2e6;">

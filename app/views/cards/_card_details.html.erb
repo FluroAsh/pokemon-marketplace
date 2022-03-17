@@ -87,36 +87,38 @@
             <% end %>
             <!-- Evolves to/form block -->
             <!-- row 3 -->
-            <div class="row row-cols-2 m-0 pb-2">
+            <% if @card.evolves_from || @card.evolves_to %>
+                <div class="row row-cols-2 m-0 pb-2">
                     <!-- evolves from? -->
-                <% if @card.evolves_from %>
-                <div class="col-sm justify-content-center">
-                    <div class="row m-0">
-                        <p class="sub-heading">Evolves from</p>
-                    </div>
-                    <div class="row m-0">
-                        <%= remove_sprite_junk(@card.evolves_from) %>
-                    </div>
-                    <div class="row m-0">
-                        <%= image_tag url_sm_sprite_ef(remove_sprite_junk(@card.evolves_from)), title: remove_sprite_junk(@card.evolves_from) %>
-                    </div>
+                    <% if @card.evolves_from %>
+                        <div class="col-sm justify-content-center">
+                            <div class="row m-0">
+                                <p class="sub-heading">Evolves from</p>
+                            </div>
+                            <div class="row m-0">
+                                <%= remove_sprite_junk(@card.evolves_from) %>
+                            </div>
+                            <div class="row m-0">
+                                <%= image_tag url_sm_sprite_ef(remove_sprite_junk(@card.evolves_from)), title: remove_sprite_junk(@card.evolves_from) %>
+                            </div>
+                        </div>
+                    <% end %>
+                    <!-- evolves to? -->
+                    <% if @card.evolves_to %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <p class="sub-heading">Evolves to</p>
+                            </div>
+                            <div class="row m-0">
+                                <%= remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
+                            </div>
+                            <div class="row m-0 ">
+                                <%= image_tag url_sm_sprite_et(remove_sprite_junk(@card.evolves_to)), title: remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
-                <% end %>
-                <!-- evolves to? -->
-                <% if @card.evolves_to %>
-                <div class="col-sm">
-                    <div class="row m-0">
-                        <p class="sub-heading">Evolves to</p>
-                    </div>
-                    <div class="row m-0">
-                        <%= remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
-                    </div>
-                    <div class="row m-0 ">
-                        <%= image_tag url_sm_sprite_et(remove_sprite_junk(@card.evolves_to)), title: remove_sprite_junk(purge_s_brackets(@card.evolves_to)) %>
-                    </div>
-                </div>
-                <% end %>
-            </div>
+            <% end %>
             <!-- additional info -->
             <!-- row 4 -->
             <% if @card.weaknesses || @card.resistances %>
@@ -172,8 +174,11 @@
             <% end %>
             <!-- !! TEMP placeholder for favourites button -->
             <div class="row text-center m-0 my-3 justify-content-center">
-                <p class="w-100 m-0" style="font-size: 3rem;">♥</p>
-                <p>Favourite</p>
+                <div class="col">
+                    <p class="w-100 m-0" style="font-size: 3rem;">♥</p>
+                    <p>Favourite</p>
+                    <%= button_to "Sell Now!", new_listing_path(@card.id), method: :get, class: "btn btn-info btn-lg p-1", style: "min-width:50%;width:80px;" %>
+                </div>
             </div>
             <div class="row row-cols-2 m-0 justify-content-center">
                 <div class="set-symbol row justify-content-center w-100">

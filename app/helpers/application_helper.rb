@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def remove_sprite_junk(name)
     # needs to be maintained/updated for larger set size, but illustrates basic method
-    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |Detective| Gl|/i, "").strip
+    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |Detective| Gl|Misty's | E4|/i, "").strip
   end
 
   def card_prices(id)
@@ -45,6 +45,6 @@ module ApplicationHelper
   def format_price(price)
     # sprintf ('string, print, format' basically...) takes 2 arguments, the format and our value
     # https://apidock.com/ruby/Kernel/sprintf
-    sprintf("$%2.2f", (price / 100.0))
+    sprintf("%2.2f", (price / 100.0)) if price.present?
   end
 end

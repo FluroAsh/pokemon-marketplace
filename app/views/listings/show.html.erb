@@ -1,9 +1,107 @@
-<div class="container">
-    <h1>temp for listing show</h1>
-    <p><%= @listing.condition %><p>
-    <p><%= @listing.card.name %><p>
-    <p><%= @listing.user.profile.first_name %><p>
-    <p><%= image_tag @listing.user.avatar, size: "150x150" %><p>
-    <p><%= @listing.price %><p>
-    <p><%= @listing.id %><p>
-</div>
+<section class="listing-show pt-3">
+    <div class="listing-show__container p-3">
+        <div class="row row-cols-sm-1 row-cols-md-2 m-0">
+            <div class="col-sm">
+                <%= image_tag @card.large_image, alt: @card.name, class: "p-card", style: "max-width: 100%;" %>
+            </div>
+            <div class="col-sm top">
+            <!-- if rarity true -->
+            <% if @card.rarity %> 
+                <h2 class="text-center pb-2 body-heading"><%= @listing.card.supertype %> 
+                <!-- append subtypes if it exists -->
+                <% if @card.subtypes %> 
+                    — <%= purge_s_brackets(@card.subtypes) %>
+                <% end %> 
+                </h2> 
+                <div class="row m-0">
+                    <div class="col avatar-name">
+                        <div class="row m-0">
+                            <a href="<%= profile_path(@listing.user.profile.id) %>">
+                                <%= image_tag @listing.user.avatar, class: "listing-avatar", size: "100x100" %>
+                            </a>
+                        </div>
+                        <div class="row m-0">
+                            <p class="avatar-name__name m-0"><%= "#{@listing.user.profile.first_name} #{@listing.user.profile.last_name}" %></p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold m-0">Condition — <%= format_condition(@listing.condition) %></p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold m-0">Price — <%= " $ #{format_price(@listing.price)}" %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-2 m-0 pb-3">
+                    <div class="col-sm">
+                        <div class="row m-0">
+                            <h2 class="card-name"><%= @card.name %></h2>
+                        </div>
+                        <div class="row m-0">
+                            <h3 class="sub-heading"><%= @card.rarity %></h2>
+                        </div>
+                    </div>
+                    <% if @prices.average_sell_price %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="col-sm">
+                            <div class="row m-0">
+                                <h3 class="font-weight-bold">Average (Weekly)</h3>
+                            </div>
+                            <div class="row m-0">
+                                <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            <% else %>
+                <!-- if rarity false -->
+                <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> — <%= purge_s_brackets(@card.subtypes) %></h2> 
+                <div class="row row-cols-2 m-0 pb-3">
+                    <div class="col-sm">
+                        <div class="row row-cols-2 m-0">
+                            <div class="col-sm">
+                                <h2 class="card-name"><%= @card.name %></h2>
+                            </div>
+                            <div class="col-sm">
+                                test
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            <% end %>
+            <!-- rules section -->
+            <!-- row 5 &/or 6 -->
+            <% if @card.rules %>
+                <div class="row m-0 pb-2">
+                    <div class="col-sm">
+                        <div class="row m-0"><p class="sub-heading">Rules</p></div>
+                        <div class="roww m-0"><%= @card.rules %></div>
+                    </div>
+                </div> 
+            <% end %>
+            <!-- flavor text section -->
+            <!-- row 5 &/or 6 -->
+            <% if @card.flavor_text %>
+                <div class="row m-0 pb-2">
+                    <div class="col-sm">
+                        <p class="flavor-text"><i>"<%= @card.flavor_text %>"</i></p>
+                    </div>
+                </div>
+            <% end %>
+                <div class="row row-cols-2 m-0 d-flex justify-content-center">
+                    <div class="set-symbol row w-100">
+                        <div class=""><%= image_tag "#{@card.card_set.symbol}", alt: "set-symbol", height: "30px", class: "pr-2" %></div>
+                        <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>             
+    </div>
+</section>
