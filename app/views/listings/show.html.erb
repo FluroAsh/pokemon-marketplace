@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>temp for listing show</h1>
+    <p><%= @listing.condition %><p>
+    <p><%= @listing.card.name %><p>
+    <p><%= @listing.user.profile.first_name %><p>
+    <p><%= image_tag @listing.user.avatar, size: "150x150" %><p>
+    <p><%= @listing.price %><p>
+    <p><%= @listing.id %><p>
+</div>

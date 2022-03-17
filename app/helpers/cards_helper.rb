@@ -1,5 +1,5 @@
 module CardsHelper
-  def condition_name(int)
+  def format_condition(int)
     case int
     when 1
       "Poor"

@@ -1,7 +1,7 @@
 <!-- mobile header w/ search bar & hamburger -->
 <nav class="mobile-header d-flex navbar navbar-expand navbar-light align-items-center justify-content-between">
     <!-- mobile menu button -->
-    <div class="menu-btn" tabindex=0 alt="menu button" name="menu button" role="button">
+    <div class="menu-btn" tabindex=0 aria-label="mobile menu button" role="button">
         <div class="menu-btn__burger"></div>
     </div>
 
@@ -17,7 +17,9 @@
 <nav class="mobile-nav">
     <div class="mobile-nav__top">
         <% if current_user %>
-            <%= image_tag(current_user.avatar_thumbnail, alt: "profile avatar", class: "mobile-nav__top__avatar") %> <!-- manual resize for default image -->
+            <a href="<%= profile_path(current_user.profile.id) %>" aria-label="image link to current user profile"> <!-- link to current users profile on click -->
+                <%= image_tag(current_user.avatar_thumbnail, alt: "profile avatar", class: "mobile-nav__top__avatar") %> <!-- manual resize for default image -->
+            </a>
             <h3><%= current_user.profile.first_name %></h3>
             <%= link_to "Edit Profile", edit_user_registration_path %>
         <% end %>
@@ -27,9 +29,9 @@
     <div class="nav-links"> 
         <%= link_to "Home", root_path, class: "nav-btn" %>
         <%= link_to "Browse", cards_path, class: "nav-btn" %>
-        <% if current_user %>
+        <% if current_user %> <!-- rendered if a user is logged in -->
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-btn" %>
-        <% else %>
+        <% else %> <!-- else display sign-in/sign-up links -->
             <%= link_to "Sign In", new_user_session_path, class: "nav-btn" %>
             <%= link_to "Sign Up", new_user_registration_path, class: "nav-btn" %>
         <% end %>

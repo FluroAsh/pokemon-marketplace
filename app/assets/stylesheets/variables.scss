@@ -105,3 +105,30 @@ $secondary: #39549d;
 .hvr-grow {
     transform: scale(1.1);
 }
+
+/** text styling **/
+/* for card pages */
+.body-heading {
+    font-weight: 900;
+}
+
+.sub-heading {
+    font-weight: 700;
+    margin: 0;
+}
+
+/**-- Media Queries --**/
+@media screen and(min-width: 768px) {
+    /** large screens **/
+    .sub-heading {
+        font-size: 1.5rem;
+    }
+
+}
+
+@media screen and(max-width: 767px) {
+    /** small screens **/
+    .sub-heading {
+        font-size: 1.5rem;
+    }
+}

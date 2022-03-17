@@ -99,6 +99,9 @@
         &__avatar {
             // styling for avatar element
             @include avatar;
+            &:hover {
+                opacity: 80%;
+            }
         }
         h3 {
             color: $secondary;

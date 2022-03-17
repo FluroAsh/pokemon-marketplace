@@ -1,24 +1,135 @@
-// Place all the styles related to the listings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 @import 'variables';
 
+// ** listing form **//
 .listing {
     max-width: 100%;
     min-height: calc(100% - 92px);
     &__details {
-        @include styled-container($width: 1000px);
         textarea {
             resize: none;
         }
     }
+    h3,
+    h2 {
+        margin: 0;
+    }
+    &__container {
+        @include styled-container($width: 1000px);
+        padding: 0;
+    }
     #listing_condition {
         max-width: 100%;
-        width: 100px;
-        height: 50px;
+
     }
-    img {
-        max-width: 250px;
+    #listing_price {
+        max-width: 100%;
+        width: 80px;
+    }
+    &__input {
+        max-width: 100%;
+        width: 450px;
+    }
+    .large-card {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px, rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+    }
+    .listing-form {
+        border-top: 4px solid $primary;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background: adjust-color($light-blue, $alpha: -0.8);
+        &__input {
+            max-width: 450px;
+        }
+    }
+    .card-name {
+        max-width: 100%;
+        min-width: 190px;
+        font-weight: 900;
+    }
+    .listing-form {
+        padding: 1rem;
+    }
+    .set-text {
+        font-weight: 700;
+        margin: 0;
+    }
+    .set-symbol {
+        align-items: center;
+        margin-top: 1rem;
+        max-width: 100%;
+        min-width: 300px;
+    }
+    .prices {
+        padding: 0.5rem;
+        min-width: 190px;
+    }
+    .sprite {
+        @include center;
+    }
+}
+
+// ** listing show **//
+
+@media screen and(max-width: 767px) {
+    // 1 col
+    .large-card {
+        max-width: 350px;
+    }
+    .prices-sprite {
+        display: flex;
+        justify-content: center;
+    }
+    .prices {
+        @include center;
+        flex-direction: column;
+    }
+    .sprite {
+        @include center;
+    }
+    .name-avg {
+        text-align: center;
+    }
+}
+
+@media screen and(min-width: 768px) {
+    // change mobile table to none when width >= 768px
+    // 2 cols
+    .poke-card {
+        max-width: 350px;
+        align-items: center;
+        &:after {
+            content: "";
+            margin-left: 1rem;
+            background: $primary;
+            height: 500px;
+            width: 4px;
+        }
+    }
+    .average {
+        max-width: 100px;
+    }
+    .top {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@media screen and(max-width: 420px) {
+    .prices-sprite {
+        display: flex;
+        justify-content: center;
+    }
+    .prices {
+        @include center;
+        flex-direction: column;
+    }
+    .sprite {
+        @include center;
+    }
+    .name-avg {
+        @include center;
     }
 }

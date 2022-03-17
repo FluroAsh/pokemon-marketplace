@@ -22,28 +22,21 @@ module ApplicationHelper
     purge_s_brackets("https://img.pokemondb.net/sprites/black-white/anim/normal/#{name.gsub('"', "").downcase}.gif")
   end
 
-  def remove_sprite_junk(name) # callable version for processing strings in view
-    # needs to be iterated upon as set size grows larger (> 1 page)
-    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |/i, "").strip
+  def remove_sprite_junk(name)
+    # needs to be maintained/updated for larger set size, but illustrates basic method
+    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |Detective| Gl|/i, "").strip
   end
 
   def card_prices(id)
     card = Pokemon::Card.find(id)
     return card.cardmarket.prices
-    ## // Object Structure //
+    ## // (relevant) object elements //
     #  @average_sell_price
     #  @avg1
     #  @avg30
     #  @avg7
-    #  @german_pro_low
     #  @low_price
     #  @low_price_ex_plus
-    #  @reverse_holo_avg1
-    #  @reverse_holo_avg30
-    #  @reverse_holo_avg7
-    #  @reverse_holo_low
-    #  @reverse_holo_sell
-    #  @reverse_holo_trend
     #  @suggested_price
     #  @trend_price
     ## //
@@ -52,6 +45,6 @@ module ApplicationHelper
   def format_price(price)
     # sprintf ('string, print, format' basically...) takes 2 arguments, the format and our value
     # https://apidock.com/ruby/Kernel/sprintf
-    sprintf("$%2.2f", (price/100.0)) 
+    sprintf("$%2.2f", (price / 100.0))
   end
 end

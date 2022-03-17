@@ -11,12 +11,12 @@ class ProfilesController < ApplicationController
 
   def show; end
 
-
   private
+
   def set_profile
-    if Profile.where(id: params[:id]).present? # error handling to see if associated user & profile exists
+    if Profile.where(id: params[:id]).present? # error handling to see if profile params[:id] exists
       @profile = Profile.find(params[:id])
-      @user = User.find(params[:id]) # finds the user_id associated with the profile
+      @user = User.find(@profile.user_id) # finds the user_id associated with the profile
     else
       flash[:alert] = "That user does not exist"
       redirect_to root_path

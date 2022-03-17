@@ -1,7 +1,5 @@
 <div class="listing__container">
-
-    <!-- form here -->
-    <%= form_with model: @listing, local: true do |f| %>
+    <%= simple_form_for @listing, local: true do |f| %>
         <% if @listing.errors.any? %>
             <div class="alert alert-error alert-dismissable fade show bg-danger">
                 <h3><%= pluralize(@listing.errors.count, "error") %> Prohibited this listing from being created</h3>
@@ -16,37 +14,148 @@
             </div>
         <% end %>
 
-        <section class="listing__details">
-        <!-- info text-->
-            <%= image_tag @card.small_image %>
-            <h2><%= @card.name %>
-            <h2>$ <%= @prices.avg7 %>
+        <section class="listing__details"> <!-- details body -->
+            <div class="row row-cols-sm-1 row-cols-md-2 m-0 p-3">
+                <div class="col-sm d-flex justify-content-center poke-card">
+                    <%= image_tag @card.large_image, alt: @card.name, class: "large-card" %>
+                </div>
 
-            <div class="form-group mb-3">
-                <%= f.label :price, class: "form-label" %>
-                <%= f.number_field :price, step: "0.01" %>
+                <div class="col-sm top">
+                    <div class="card-details row m-0 d-flex flex-column">
+                        <!-- if rarity true -->
+                        <% if @card.rarity %> 
+                            <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> 
+                                <!-- append subtypes if it exists -->
+                                <% if @card.subtypes %> 
+                                    — <%= purge_s_brackets(@card.subtypes) %>
+                                <% end %> 
+                            </h2> 
+                            <div class="name-avg row row-cols-2 m-0 pb-3">
+                                <div class="col-sm">
+                                    <div class="row m-0">
+                                        <div class="col-sm">
+                                            <h2 class="card-name"><%= @card.name %></h2>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-sm">
+                                            <h3 class="sub-heading"><%= @card.rarity %></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if @prices.average_sell_price %>
+                                    <div class="col-sm">
+                                        <div class="row m-0">
+                                            <div class="col-sm">
+                                                <h3 class="font-weight-bold">Average</h3>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-sm">
+                                                <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% else %>
+                                    <div class="col-sm">
+                                        <div class="row m-0">
+                                            <div class="col-sm">
+                                                <h3 class="font-weight-bold">Average (Weekly)</h3>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-sm">
+                                                <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% end %>
+                            </div>  
+                        <% else %>
+                        <!-- if rarity false -->
+                            <h2 class="text-center pb-2 body-heading"><%= @card.supertype %> — <%= purge_s_brackets(@card.subtypes) %></h2> 
+                                <div class="row row-cols-2 m-0 pb-3">
+                                    <div class="col-sm">
+                                        <div class="row m-0">
+                                            <h2 class="card-name"><%= @card.name %></h2>
+                                        </div>
+                                    </div>
+                                    <% if @prices.average_sell_price %>
+                                        <div class="average col-sm">
+                                            <div class="row m-0">
+                                                <h3 class="font-weight-bold">Average:</h3>
+                                            </div>
+                                            <div class="row m-0">
+                                                <h3>$ <%= ("%.2f" % @prices.average_sell_price) %></h3>
+                                            </div>
+                                        </div>
+                                    <% else %>
+                                        <div class="average col-sm">
+                                            <div class="row m-0">
+                                                <h3 class="font-weight-bold">Average: (Weekly)</h3>
+                                            </div>
+                                            <div class="row m-0">
+                                                <h3>$ <%= ("%.2f" % @prices.avg7) %></h3>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                </div> 
+                        <% end %>
+                        <div class="prices-sprite row row-cols-2 m-0 pb-3">
+                            <div class="sprite col-sm">
+                                <%= get_card_sprite %>
+                            </div>
+
+                            <div class="prices col-sm">
+                                <div class="row m-0">
+                                    <p class="sub-heading">Daily $ <%= ("%.2f" % @prices.avg1) %></p>
+                                </div>
+                                <div class="row m-0">
+                                    <p class="sub-heading">Weekly $ <%= ("%.2f" % @prices.avg7) %></p>
+                                </div>
+                                <div class="row m-0">
+                                    <p class="sub-heading">Monthly $ <%= ("%.2f" % @prices.avg30) %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-0 justify-content-center">
+                        <div class="row row-cols-2 m-0">
+                            <div class="set-symbol row justify-content-center">
+                                <div class="d-flex"><%= image_tag "#{@card.card_set.symbol}", alt: "set-symbol", height: "30px", class: "pr-2" %></div>
+                                <p class="set-text text-center"><i><%= "#{@card.card_set.card_set_id.upcase} (#{@card.number}/#{@card.card_set.printed_total})" %></i></p>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
             </div>
+                
+            <!-- form block -->
+            <div class=" listing-form row m-0 justify-content-center">
+                <div class="listing-form__input col-sm mt-3">
+                    <div class="form-group mb-3">
+                        <%= f.label :condition, class: "form-label" %>
+                         <!-- maps our conditions hash as k, v to an array for user selection (front-end shows the key, user submits the value) -->
+                        <%= f.select :condition, @conditions.map { |k, v| [k, v] }, class: "form-select" %>
+                    </div>
 
-            <!-- simple form version -->
-            <!--<div class="form-group mb-3">
-                <% # f.input :condition, as: :select, collection: @conditions.map { |k, v| [k, v] } %>
-            </div>-->
+                    <div class="form-group mb-3">
+                        <%= f.label :price, class: "form-label" %>
+                        <%= f.number_field :price, step: "0.01" %>
+                    </div>
 
-             <div class="form-group mb-3">
-                <%= f.label :condition, class: "form-label" %>
-                <%= f.select :condition, @conditions.map { |k, v| [k, v] }, class: "form-select" %>
-            </div>
+                    <div class="form group mb-3">
+                        <%= f.label :description, class: "form-label" %>
+                        <%= f.text_area :description, class: "w-100", style: "height:200px;" %>    
+                    </div>  
+                    
+                    <!-- card id that is passed to create action -->
+                    <%= f.hidden_field :card_id, :value => @card.id %>
 
-            <div class="form group mb-3">
-                <%= f.label :description, class: "form-label" %>
-                <%= f.text_area :description, class: "w-100", style: "height:200px;" %>    
-            </div>  
-            
-            <!-- card id that is passed to create action -->
-            <%= f.hidden_field :card_id, :value => @card.id %>
-
-            <div class="actions">
-                <%= f.submit style: "width:100%;" %>
+                    <div class="actions">
+                        <%= f.submit style: "width:100%;" %>
+                    </div>
+                </div>
             </div>
         </section>
     <% end %>

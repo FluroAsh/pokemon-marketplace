@@ -11,7 +11,7 @@ class Card < ApplicationRecord
 
   def self.text_search(query)
     if query.present?
-      search(query)
+      search(query) # search with query using pgsearch module method
     else
       Card.order("cards.name").all # returns all cards if no match
     end
