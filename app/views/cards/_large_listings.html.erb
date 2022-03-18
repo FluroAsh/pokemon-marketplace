@@ -23,14 +23,31 @@
                         <td scope="col-sm" style="width:100px;">$ <%= format_price(listing.price) %></td>
                         <td scope="col-sm"><%= listing.description %></td>
                         <td scope="col-sm" style="width:120px;font-weight:500;"><%= format_condition(listing.condition) %></td>
-                        <td scope="col-sm" aria-label="buttons column body" style="width:200px;border-left: 1px solid #dee2e6;">
-                            <div class="buttons-container">
-                                <%= button_to "Buy", card_path(@card.id), class: "btn btn-primary p-1", style: "min-width:100%;width:80px;" if current_user && current_user.id != listing.user_id %> <!-- TO:DO Redirect to stripe checkout -->
-                                <%= button_to "View", listing_path(listing.id), method: :get, class: "btn btn-success p-1", style: "min-width:100%;width:80px;" %> <!-- override default post method -->
-                                <% if current_user && current_user.id == listing.user_id %>
-                                    <%= button_to "Edit", edit_listing_path(listing_id: listing.id, card_id: @card.id), method: :get, class: "btn btn-warning p-1", style: "min-width:100%;width:80px;" %> <!-- override default post method -->                             
-                                <% end %>
-                            </div>
+                        <td scope="col-sm" aria-label="buttons column body" style="width:120px;border-left: 1px solid #dee2e6;">
+                            <!-- button posts listing to stripe webhook, allows us to create stripe session and create order -->
+                            <%= button_to "Buy",
+                                          create_checkout_session_path,
+                                          remote: true,
+                                          method: :post,
+                                          params: { id: listing.id },
+                                          class: "btn btn-primary",
+                                          style: "min-width:100%;width:60px",
+                                          data: { disable_with: "Loading..." } if current_user && current_user.id != listing.user_id %>
+                            <%= button_to "View",
+                                          listing_path(listing.id),
+                                          method: :get,
+                                          class: "btn btn-success mt-1",
+                                          style: "min-width:100%;width:60px",
+                                          data: { disable_with: "Loading..." } %> 
+                                            <!-- override default post method to a get request -->
+                            <% if current_user && current_user.id == listing.user_id %>
+                                <%= button_to "Edit",
+                                              edit_listing_path(listing_id: listing.id, card_id: @card.id),
+                                              method: :get,
+                                              class: "btn btn-warning mt-1",
+                                              style: "min-width:100%;width:60px",
+                                              data: { disable_with: "Loading..." } %>                         
+                            <% end %>
                         </td>
                     </tr>
                 <% end %>

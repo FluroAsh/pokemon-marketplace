@@ -66,3 +66,5 @@ gem "pagy", "~> 5.10"
 gem "pokemon_tcg_sdk", "~> 4.4"
 
 gem "simple_form", "~> 5.1"
+
+gem "stripe", "~> 5.45"

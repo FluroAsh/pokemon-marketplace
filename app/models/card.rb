@@ -3,6 +3,7 @@ class Card < ApplicationRecord
   belongs_to :card_set
   has_many :listings
   before_save :remove_db_sprite_junk # sanitize data with 'lifecycle hook'
+  # additional hooks will go here
 
   include PgSearch::Model # imports PgSearch library for PSQL searches
   pg_search_scope :search, against: [:name, :rarity, :card_set_id, :supertype],

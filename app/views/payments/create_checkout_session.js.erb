@@ -1,0 +1,6 @@
+// script used to redirect user to checkout with stripe public key (link transaction to the appropriate store)
+const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+    
+stripe.redirectToCheckout({
+    sessionId: "<%= @session_id %>"
+})

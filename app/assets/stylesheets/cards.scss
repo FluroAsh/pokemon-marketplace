@@ -1,6 +1,5 @@
 @import 'variables';
 
-
 // ** Index Page **//
 .index {
     // index block (wraps content)
@@ -63,7 +62,7 @@
 }
 .card-img {
     display: flex;
-    border-radius: 5px;
+    border-radius: 15px;
     width: 350px;
     max-width: 100%;
     height: auto;

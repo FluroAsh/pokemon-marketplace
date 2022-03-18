@@ -6,6 +6,18 @@
     font-weight: 900;
 }
 
+.error-explanation {
+    /* contains errors raised during creation */
+    @include center;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8d7da;
+    color: #721c24;
+    border-bottom: #f5c6cb;
+    border-radius: 5px;
+}
+
 // ** listing form **//
 .listing {
     max-width: 100%;

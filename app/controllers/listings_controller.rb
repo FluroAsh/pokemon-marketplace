@@ -86,8 +86,8 @@ class ListingsController < ApplicationController
   end
 
   def set_form_vars
-    @card = Card.find(params[:card_id]) # works for new but not edit... (what card_id?, url has listing id)
-    @prices = @card.card_prices(@card.id) # loads in prices
+    @card = Card.find(params[:card_id]) # 
+    @prices = @card.card_prices(@card.id) # loads in prices (dependent on our @card id)
     @conditions = Listing.conditions # loads in our enum keys (Poor, good, fair, etc. )
   end
 end
