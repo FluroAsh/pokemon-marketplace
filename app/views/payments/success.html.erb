@@ -1,7 +1,7 @@
 <section class="success container bg-secondary rounded">
     <h1 class="text-white text-center">Congratulations you bought <%= @order.listing.card.name %>!</h1>
     <div class="success__container container d-flex justify-content-center p-0">
-        <%= image_tag @order.listing.card.small_image, alt: @ %>
+        <%= image_tag @order.listing.card.small_image, alt: @order.listing.card.name %>
         <span id="success--receipt-link"><%= link_to "View Receipt", @order.receipt_url, class: "success__container--receipt" %><span>
     </div>
     <%= link_to "Back" card_path(@order.listing.card.id) %>
