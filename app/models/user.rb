@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
 
   validates :email, presence: true
-  before_save :avatar_thumbnail # callback to resize an uploaded avatar ONLY when saved to S3
+  before_save :avatar_thumbnail  # callback to resize an uploaded avatar ONLY when saved to S3
   accepts_nested_attributes_for :profile
 
   def profile # force devise to build our nested 'profile' form

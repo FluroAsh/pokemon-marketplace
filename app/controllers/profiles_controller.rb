@@ -9,7 +9,9 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params) # save validation handled by devise
   end
 
-  def show; end
+  def show
+
+  end
 
   private
 
