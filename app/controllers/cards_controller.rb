@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show]
 
   def index
-    # pagy & card variable receive results of card model PgSearch method query 
+    # pagy & card variable receive results of card model PgSearch method query
     # (params received from respective search form, and orederd by cards.name)
     @pagy, @cards = pagy(Card.text_search(params[:query]).order("cards.name"))
     # ^^^ breaks the index page, but is faster on profile page...

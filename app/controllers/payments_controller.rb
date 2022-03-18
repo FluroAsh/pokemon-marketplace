@@ -3,12 +3,12 @@ class PaymentsController < ApplicationController
   before_action :set_listing, only: [:success, :cancel] # So we can pass attributes to the view (title, description etc.)
 
   def success
-    @order = Order.find_by(listing_id: @listing.id)
-    redirect_to payment_success_path(params[:id])
+    @order = Order.find_by(listing_id: params[:id])
+    # redirect_to payment_success_path(params[:id])
   end
 
   def cancel
-    @order = Order.find_by(listing_id: @listing.id)
+    @order = Order.find_by(listing_id: params[:id])
     redirect_to card_path(@listing.card.id)
     flash[:alert] = "Order for #{@listing.card.name} was cancelled 👋"
   end
@@ -16,24 +16,23 @@ class PaymentsController < ApplicationController
   def webhook # creates order and posts to stripe
     begin
       payload = request.raw_post # Everything that comes in from our request//similar to params
-      header = request.headers["HTTP_STRIPE_SIGNATURE"]
+      header = request.headers['HTTP_STRIPE_SIGNATURE']
       secret = Rails.application.credentials.dig(:stripe, :webhook_signature)
       event = Stripe::Webhook.construct_event(payload, header, secret)
     rescue Stripe::SignatureVerificationError => e
-      render json: { error: "Unauthorised" }, status: 403
-      return
+      render json: {error: "Unauthorised"}, status: 403
+      return 
     rescue JSON::ParseError => e
-      render json: { error: "Bad request" }, status: 422
+      render json: {error: "Bad request"}, status: 422
       return
     end
-    # payment_id = params[:data][:object][:payment_intent]
+
     payment_id = event.data.object.payment_intent
     payment = Stripe::PaymentIntent.retrieve(payment_id)
     listing_id = payment.metadata.listing_id
     # find the listing in the db - update sold to true
     @listing = Listing.find(listing_id)
     @listing.update(sold: true)
-    # CREATE ORDER/PURCHASE & TRACK EXTRA INFO
     Order.create(listing_id: listing_id, seller_id: @listing.user_id, buyer_id: payment.metadata.user_id, payment_id: payment_id, receipt_url: payment.charges.data[0].receipt_url)
   end
 

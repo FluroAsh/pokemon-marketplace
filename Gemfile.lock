@@ -332,6 +332,7 @@ DEPENDENCIES
   devise (~> 4.8)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  json (~> 2.6)
   listen (~> 3.3)
   pagy (~> 5.10)
   pg (~> 1.1)
