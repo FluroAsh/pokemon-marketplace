@@ -5,8 +5,6 @@ class CardsController < ApplicationController
     # pagy & card variable receive results of card model PgSearch method query
     # (params received from respective search form, and orederd by cards.name)
     @pagy, @cards = pagy(Card.text_search(params[:query]).order("cards.name"))
-    # ^^^ breaks the index page, but is faster on profile page...
-    # doesn't need to load it on every SHOW CARD
     if @cards.count == 0
       redirect_to root_path, alert: "😥 Couldn't find that card, try again"
     end
