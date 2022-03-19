@@ -121,6 +121,14 @@
         max-width: 100%;
         min-width: 300px;
     }
+    .fav {
+        @include center;
+        border-radius: 100%;
+        font-size: 2rem;
+        height: 50px;
+        width: 50px;
+        line-height: 10px; // ceneters heart text 'icon'
+    }
 }
 
 /* table (mobile + large) for listings */

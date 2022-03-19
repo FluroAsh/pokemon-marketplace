@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show]
+  before_action :set_profile, :set_cards, only: [:show]
 
   def new
     @profile = Profile.new
@@ -9,11 +9,21 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params) # save validation handled by devise
   end
 
-  def show
-
-  end
+  def show; end
 
   private
+
+  def set_cards # sets cards for the favourites section
+    if @user.favourites.present? # if user has any favourites present
+      ids = []
+      @user.favourites.each do |c|
+        ids << c.card_id
+      end
+      # query database for cards that belongs to our users 
+      # favourites card_ids and assign to a var for iteration in the view
+      @cards = Card.where(id: ids) 
+    end
+  end
 
   def set_profile
     if Profile.where(id: params[:id]).present? # error handling to see if profile params[:id] exists

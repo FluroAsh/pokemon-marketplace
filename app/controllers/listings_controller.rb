@@ -72,21 +72,20 @@ class ListingsController < ApplicationController
   end
 
   def set_listing
-    # set the card data in here so we can use it in the listing model
     @listing = Listing.find(params[:listing_id])
   end
 
-  def set_card # gets our card & prices data
+  def set_card # gets our card & prices data using 
     @card = Card.find(@listing.card.id)
     @prices = @card.card_prices(@card.id)
   end
 
-  def listing_params
+  def listing_params # card_id passed in with hidden field so we can reset form vars
     params.require(:listing).permit(:price, :condition, :description, :card_id)
   end
 
   def set_form_vars
-    @card = Card.find(params[:card_id]) # 
+    @card = Card.find(params[:card_id]) 
     @prices = @card.card_prices(@card.id) # loads in prices (dependent on our @card id)
     @conditions = Listing.conditions # loads in our enum keys (Poor, good, fair, etc. )
   end

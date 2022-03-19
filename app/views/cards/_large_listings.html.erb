@@ -18,7 +18,7 @@
                             <div class="name-avatar d-flex justify-content-between">
                                 <%= "#{listing.user.profile.first_name} #{listing.user.profile.last_name}" %>
                                 <% if listing.user.avatar.attached? %>
-                                    <%= image_tag listing.user.avatar_thumbnail, style: "margin-left:0.5rem;border-radius:5px;background:white", size: "65x65", alt: "profile-avatar" if listing.user.avatar.attached? %>
+                                    <%= image_tag listing.user.avatar_thumbnail, style: "margin-left:0.5rem;border-radius:5px;background:white;", size: "65x65", alt: "profile-avatar" if listing.user.avatar.attached? %>
                                 <% else %>
                                     <%= image_tag "default-profile.jpg", style: "margin-left:0.5rem;border-radius:5px;", size: "65x65", alt: "profile-avatar" %>
                                 <% end %>

@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include Pagy::Frontend # makes pagy frontend helpers available in our views
+  include Pagy::Frontend # makes pagy frontend helpers available in all our views
 
   def singularize(string) # targets any spaces and characters after it
     string.gsub(/\s.+/, "") if string.respond_to?(:to_s)

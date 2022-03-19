@@ -16,9 +16,8 @@ Rails.application.routes.draw do
   # profiles
   get "profiles/:id", to: "profiles#show", as: "profile"
   # favourites
-  post "favourites", to: "favourites#create"
-  get "favourites/new", to: "listings#new", as: "new_favourite"
-  delete "favourites/:id", to: "listings#destroy"
+  post "favourites", to: "favourites#create", as: "create_favourite"
+  delete "favourites/:card_id", to: "favourites#destroy"
   # payments (stripe etc)
   get "payments/success/:id", to: "payments#success", as: "payment_success"
   get "payments/cancel/:id", to: "payments#cancel", as: "payment_cancel"

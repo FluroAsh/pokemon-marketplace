@@ -14,7 +14,7 @@ class Card < ApplicationRecord
     if query.present?
       search(query) # search with query using pgsearch module method
     else
-      Card.order("cards.name").all # returns all cards if no match
+      Card.all # returns all cards if no match, order by card name
     end
   end
 

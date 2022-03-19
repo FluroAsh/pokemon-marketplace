@@ -1,5 +1,4 @@
 module SeedHelper
-
     ## Can be moved to card model as a callback (before_save)
     def convert_pdex_num(pdex_num) # removes square brackets & converts to 3 digit (000) format
         if pdex_num != nil
