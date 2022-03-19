@@ -11,13 +11,16 @@
         @include avatar;
     }
     .fav-cards {
+        /* cards container */
         display: flex;
         flex-basis: auto;
         .profile-card {
+            /* card elements on the profile page */
             position: relative;
             bottom: 0;
             height: 250px;
             &:hover {
+                /* hover effect for profile card, moves up slightly */
                 transition: ease-in-out 0.5s;
                 bottom: 20px;
                 z-index: 99;

@@ -23,8 +23,10 @@
         <h3 class="text-center">Here's some of my favourite cards!</h3>
         <div class="cards">
             <!-- gets up to 6 random cards from the users favourites -->
-            <% @cards.sample(6).each do |card| %>
-                <a href="<%= card_path(card.id) %>"><%= image_tag card.small_image, alt: card.name, class: "profile-card" %></a>
+            <% if @user.favourites.present? %>
+                <% @cards.sample(6).each do |card| %>
+                    <a href="<%= card_path(card.id) %>"><%= image_tag card.small_image, alt: card.name, class: "profile-card" %></a>
+                <% end %>
             <% end %>
         </div>
     </section>
