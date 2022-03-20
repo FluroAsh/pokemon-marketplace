@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def remove_sprite_junk(name)
     # needs to be maintained/updated for larger set size, but illustrates basic method
-    name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock'|M |Detective| Gl|Misty's | E4|/i, "").strip
+    name.gsub(/Dark |Team Magma's |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| V|Alolan |Brock's |M |Detective| Gl|Misty's | E4|/i, "").strip
   end
 
   def card_prices(id)

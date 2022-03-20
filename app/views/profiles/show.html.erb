@@ -21,7 +21,7 @@
     <section class="fav-cards container d-flex flex-column align-items-center">
         <div class="cards pb-3">
             <!-- gets up to 6 random cards from the users favourites if @user has any favourites -->
-            <% if @user.favourites.present? %>
+            <% if !@user.favourites.empty? %>
             <div class="row row-cols-1 mt-3">
                 <div class="col text-center">
                     <div class="row m-0 justify-content-center">

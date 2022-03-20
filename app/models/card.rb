@@ -22,7 +22,7 @@ class Card < ApplicationRecord
 
   # sanitize data/reformat before saving into the database
   def remove_db_junk # isolate pokemon name, then remove trailing words if uncaught
-    self.sprite_name = self.sprite_name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| Gl|Detective | V|Alolan |Brock's|Misty's |/i, "").strip
+    self.sprite_name = self.sprite_name.gsub(/Dark |Team Magma's |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| Gl|Detective | V|Alolan |Brock's|Misty's |/i, "").strip
     self.evolves_from = self.evolves_from.to_s if !self.evolves_from.nil?
 
     if self.national_pokedex_number != nil
