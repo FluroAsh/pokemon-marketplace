@@ -17,7 +17,7 @@
                     <div class="col avatar-name">
                         <div class="row m-0">
                             <a href="<%= profile_path(@listing.user.profile.id) %>">
-                                <%= image_tag @listing.user.avatar, class: "listing-avatar", size: "100x100" %>
+                                <%= image_tag @listing.user.avatar_thumbnail, class: "listing-avatar", size: "100x100" %>
                             </a>
                         </div>
                         <div class="row m-0">
@@ -68,9 +68,6 @@
                         <div class="row row-cols-2 m-0">
                             <div class="col-sm">
                                 <h2 class="card-name"><%= @card.name %></h2>
-                            </div>
-                            <div class="col-sm">
-                                test
                             </div>
                         </div>
                     </div>

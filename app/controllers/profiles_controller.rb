@@ -27,6 +27,8 @@ class ProfilesController < ApplicationController
 
   def set_profile
     if Profile.where(id: params[:id]).present? # error handling to see if profile params[:id] exists
+      # queries database to find match for params[:id] and the profile_id stored in db
+      # no associated data required
       @profile = Profile.find(params[:id])
       @user = User.find(@profile.user_id) # finds the user_id associated with the profile
     else

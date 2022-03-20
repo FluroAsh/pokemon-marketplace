@@ -2,29 +2,32 @@ include SeedHelper
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup)
 
-## DELETES OLD RECORDS
+## DELETES OLD RECORDS ##
 ## Children
 Favourite.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!("favourites") # reset id sequence to 1
 Order.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!("orders")
 Listing.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!("listings")
 Profile.delete_all
-##
+ActiveRecord::Base.connection.reset_pk_sequence!("profiles")
 ## Parents
 User.delete_all
-Card.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!("users")
+Card.delete_all # string id, no reset required
 CardSet.delete_all
 ##
 
 ## API Doc: https://github.com/PokemonTCG/pokemon-tcg-sdk-ruby
 # Creates clean requests to the API to retrieve ALL card data
-# change page: n to a different number to retrieve different data
+# >> change 'page: 1' to a different number to retrieve different data
 cards = Pokemon::Card.where(page: 1, pageSize: 200) # only get first 100 cards
 # cards = Pokemon::Card.all.first(5000)
 sets = Pokemon::Set.all
 
 # Creates a new card/cardset for each unique card we passed into our cards variable
 # Saves time by loading from our DB rather than external API -- useful for Heroku Deployment
-
 if CardSet.count == 0
   i = 0
   puts "----------------------------------------------"

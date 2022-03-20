@@ -10,16 +10,14 @@ class CardsController < ApplicationController
     end
   end
 
-  def show
-    # when a request is made for both all cards and card_sets to be made available to the view/controller
-    # @cards = Card.includes(:card_sets)
-  end
+  def show; end
 
   private
 
   def set_card # set the card, prices & relevant listings required for card overview
     begin
       @card = Card.find(params[:card_id])
+      p ">>>>>>>>>>>>>>>> #{@card}"
       @prices = @card.card_prices(@card.id) # calls API price data using model
     rescue
       redirect_to root_path, alert: "😥 Couldn't find that card, try again"
