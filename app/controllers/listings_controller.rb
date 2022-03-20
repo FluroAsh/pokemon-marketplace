@@ -7,6 +7,7 @@ class ListingsController < ApplicationController
   before_action :verify_user, except: [:show] # verify user signed in except on index & show action
   before_action :set_form_vars, only: [:new, :edit]
 
+  def index; end
   def show; end
 
   def new
