@@ -1,4 +1,4 @@
-include SeedHelper
+include SeedHelper # included for object sanitization (weaknesses, resistances, etc).
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup)
 
@@ -22,8 +22,8 @@ CardSet.delete_all
 ## API Doc: https://github.com/PokemonTCG/pokemon-tcg-sdk-ruby
 # Creates clean requests to the API to retrieve ALL card data
 # >> change 'page: 1' to a different number to retrieve different data
-cards = Pokemon::Card.where(page: 1, pageSize: 200) # only get first 100 cards
-# cards = Pokemon::Card.all.first(5000)
+# cards = Pokemon::Card.where(page: 1, pageSize: 50) # only get first 50 cards for testing
+cards = Pokemon::Card.all.first(5000)
 sets = Pokemon::Set.all
 
 # Creates a new card/cardset for each unique card we passed into our cards variable
@@ -67,13 +67,13 @@ if Card.count == 0
       resistances: clean_resistance_type(card.resistances),
       retreat_cost: card.retreat_cost,
       converted_retreat_cost: card.converted_retreat_cost,
-      evolves_from: clean_evolves_from(card.evolves_from),
+      evolves_from: card.evolves_from,
       evolves_to: card.evolves_to,
       flavor_text: card.flavor_text,
       rules: clean_rule_text(card.rules), # TO:DO - FIX! -- Extract the string
       number: card.number,
       rarity: card.rarity,
-      national_pokedex_number: convert_pdex_num(card.national_pokedex_numbers),
+      national_pokedex_number: card.national_pokedex_numbers,
       small_image: card.images.small,
       large_image: card.images.large,
     )

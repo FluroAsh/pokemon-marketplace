@@ -16,7 +16,10 @@ class ProfilesController < ApplicationController
   def set_cards # sets cards for the favourites section
     if @user.favourites.present? # if user has any favourites present
       ids = []
-      @user.favourites.each do |c|
+      # gets all of card id's that have been favourited by the user
+      # and then saves them into an array so we can pass it to active_record and query our database
+      # instead of making repeat queries 
+      @user.favourites.each do |c| 
         ids << c.card_id
       end
       # query database for cards that belongs to our users 

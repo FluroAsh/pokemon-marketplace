@@ -2,8 +2,8 @@ class Card < ApplicationRecord
   include ApplicationHelper # imports ApplicationHelper for card_prices method
   belongs_to :card_set
   has_many :listings
-  before_save :remove_db_sprite_junk # sanitize data with 'lifecycle hook'
-  # additional hooks will go here
+  
+  before_save :remove_db_junk
 
   include PgSearch::Model # imports PgSearch library for PSQL searches
   pg_search_scope :search, against: [:name, :rarity, :card_set_id, :supertype],
@@ -20,10 +20,15 @@ class Card < ApplicationRecord
 
   private
 
-  # sanitize data here (move methods from seed_helper)
-  def remove_db_sprite_junk # isolate pokemon name, then remove trailing words if uncaught
+  # sanitize data/reformat before saving into the database
+  def remove_db_junk # isolate pokemon name, then remove trailing words if uncaught
     self.sprite_name = self.sprite_name.gsub(/Dark |Team Aqua's |-EX|Erika's |Blaine's | FB| G| δ| Gl|Detective | V|Alolan |Brock's|Misty's |/i, "").strip
-  end
+    self.evolves_from = self.evolves_from.to_s if !self.evolves_from.nil?
 
-  
+    if self.national_pokedex_number != nil
+      self.national_pokedex_number = ("%03d" % "#{(self.national_pokedex_number.gsub(/"|\[|\]/, "")).to_i}")
+    else
+      self.national_pokedex_number = self.national_pokedex_number
+    end
+  end
 end

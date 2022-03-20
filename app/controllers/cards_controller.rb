@@ -16,9 +16,8 @@ class CardsController < ApplicationController
 
   def set_card # set the card, prices & relevant listings required for card overview
     begin
-      @card = Card.find(params[:card_id])
-      p ">>>>>>>>>>>>>>>> #{@card}"
-      @prices = @card.card_prices(@card.id) # calls API price data using model
+      @card = Card.find(params[:card_id]) # searches db for relevant card id matching params[:card_id]
+      @prices = @card.card_prices(@card.id) # calls API price data using application_helper
     rescue
       redirect_to root_path, alert: "😥 Couldn't find that card, try again"
     end
