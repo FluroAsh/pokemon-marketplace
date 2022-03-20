@@ -195,7 +195,8 @@
                                   new_listing_path(@card.id),
                                   method: :get,
                                   class: "btn btn-info btn-lg p-1",
-                                  style: "min-width:50%;width:80px;" %>
+                                  style: "min-width:50%;width:80px;",
+                                  data: { disable_with: "Loading..." } %>
                 </div>
             </div>
             <div class="row row-cols-2 m-0 justify-content-center">

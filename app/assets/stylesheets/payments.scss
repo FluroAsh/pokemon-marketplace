@@ -1,0 +1,16 @@
+@import 'variables';
+
+.success {
+    max-width: 100%;
+    min-height: calc(100% - 92px);
+    &__details {
+        @include styled-container($width: 1000px);
+    }
+
+    &__card {
+        max-width: 250px;
+    }
+    &__receipt {
+        @include link-styling;
+    }
+}

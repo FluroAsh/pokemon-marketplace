@@ -1,5 +1,5 @@
-<section class="profile d-flex flex-column align-items-center justify-content-between">
-    <section class="profile__info container">
+<div class="profile d-flex flex-column align-items-center justify-content-between">
+    <section class="profile__info">
         <div class="d-flex flex-column align-items-center mt-3">
             <%= image_tag (@user.avatar_thumbnail), alt: "profile-avatar", class: "profile__avatar" %>
             <% if current_user && current_user.id == @profile.user_id %>
@@ -11,23 +11,33 @@
                 <h3>Hi! I'm <%= @profile.first_name %>!</h3>
                 <h3>I'm from <%= @profile.state %> 👋</h3>
             </div>
-            
         </div>
     </section>
     
     <div>
-        <span class="fav w-100 btn btn-danger text-center">♥</span> 
+        <span class="fav btn-danger text-center">♥</span> 
     </div>
 
     <section class="fav-cards container d-flex flex-column align-items-center">
-        <h3 class="text-center">Here's some of my favourite cards!</h3>
-        <div class="cards">
-            <!-- gets up to 6 random cards from the users favourites -->
+        <div class="cards pb-3">
+            <!-- gets up to 6 random cards from the users favourites if @user has any favourites -->
             <% if @user.favourites.present? %>
-                <% @cards.sample(6).each do |card| %>
-                    <a href="<%= card_path(card.id) %>"><%= image_tag card.small_image, alt: card.name, class: "profile-card" %></a>
-                <% end %>
+            <div class="row row-cols-1 mt-3">
+                <div class="col text-center">
+                    <div class="row m-0 justify-content-center">
+                        <h3>Here's some of my favourite cards!</h3>
+                    </div>
+                    <div class="row m-0 justify-content-center">
+                    <% @cards.sample(6).each do |card| %>
+                        <a href="<%= card_path(card.id) %>">
+                            <%= image_tag card.small_image, alt: "#{card.name} trading card", title: card.name, class: "profile-card" %>
+                        </a>
+                    <% end %>
+            <% else %>
+                        <h3 class="text-center">I don't have any favourite cards yet 😢</h3>
             <% end %>
+                </div>
+            </div>
         </div>
     </section>
-</section>
+</div>

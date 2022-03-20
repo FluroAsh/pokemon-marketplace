@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "cards/:card_id", to: "cards#show", as: "card"
   # listings
   get "listings", to: "listings#index", as: "listings"
-  post "listings", to: "listings#create"
+  post "listings", to: "listings#create", as: "create_listing"
   get "listings/new/:card_id", to: "listings#new", as: "new_listing"
   get "listings/:listing_id", to: "listings#show", as: "listing"
   put "listings/:listing_id", to: "listings#update"

@@ -4,7 +4,6 @@ class PaymentsController < ApplicationController
 
   def success
     @order = Order.find_by(listing_id: params[:id])
-    # redirect_to payment_success_path(params[:id])
   end
 
   def cancel

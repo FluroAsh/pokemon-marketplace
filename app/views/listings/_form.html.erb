@@ -1,18 +1,15 @@
-<div class="listing__container">
-        <% if @listing.errors.any? %>
-            <div id="error_explanation" class="d-flex flex-column align-items-start">
-                <h2 class="text-center">
-                <%= I18n.t("errors.messages.not_saved",
-                            count: @listing.errors.count)%>
-                </h2>
-                <ul class="ml-3">
-                <% @listing.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-                </ul>
-            </div>
-        <% end %>
+<% if @listing.errors.any? %>
+    <div class="error-explanation">
+        <h3><%= pluralize(@listing.errors.count, "error") %> Prohibited this listing from being created</h3>
+        <ul>
+            <% @listing.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
 
+<div class="listing__container">
     <%= simple_form_for @listing, local: true do |f| %>
         <section class="listing__details"> <!-- details body -->
             <div class="row row-cols-sm-1 row-cols-md-2 m-0 p-3">
@@ -149,7 +146,7 @@
                         <%= f.text_area :description, class: "w-100", style: "height:200px;" %>    
                     </div>  
                     
-                    <!-- card id that is passed to create action -->
+                    <!-- card id that is passed to create action as params[:listing][:card_id] -->
                     <%= f.hidden_field :card_id, :value => @card.id %>
 
                     <div class="actions">

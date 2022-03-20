@@ -12,7 +12,7 @@ class CardsController < ApplicationController
 
   def show
     # when a request is made for both all cards and card_sets to be made available to the view/controller
-    @cards = Card.includes(:card_sets)
+    # @cards = Card.includes(:card_sets)
   end
 
   private

@@ -3,6 +3,14 @@ include SeedHelper
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup)
 
 ## DELETES OLD RECORDS
+## Children
+Favourite.delete_all
+Order.delete_all
+Listing.delete_all
+Profile.delete_all
+##
+## Parents
+User.delete_all
 Card.delete_all
 CardSet.delete_all
 ##
@@ -10,7 +18,8 @@ CardSet.delete_all
 ## API Doc: https://github.com/PokemonTCG/pokemon-tcg-sdk-ruby
 # Creates clean requests to the API to retrieve ALL card data
 # change page: n to a different number to retrieve different data
-cards = Pokemon::Card.all.first(5000)
+cards = Pokemon::Card.where(page: 1, pageSize: 200) # only get first 100 cards
+# cards = Pokemon::Card.all.first(5000)
 sets = Pokemon::Set.all
 
 # Creates a new card/cardset for each unique card we passed into our cards variable

@@ -1,8 +1,16 @@
-<section class="success container bg-secondary rounded">
-    <h1 class="text-white text-center">Congratulations you bought <%= @order.listing.card.name %>!</h1>
-    <div class="success__container container d-flex justify-content-center p-0">
-        <%= image_tag @order.listing.card.small_image, alt: @order.listing.card.name %>
-        <span id="success--receipt-link"><%= link_to "View Receipt", @order.receipt_url, class: "success__container--receipt" %><span>
-    </div>
-    <%= link_to "Back" card_path(@order.listing.card.id) %>
+<section class="success d-flex flex-column align-items-center justify-content-center rounded">
+    <% if current_user.id == @order.buyer_id %>
+        <div class="success__details container d-flex justify-content-center p-0">
+            <div class="d-flex justify-content-center row">
+                <h1 class="text-white text-center">Congratulations you bought <%= @order.listing.card.name %>!</h1>
+            </div>
+            <div class="d-flex flex-column align-items-center row">
+                <%= image_tag @order.listing.card.small_image, alt: @order.listing.card.name, class: "success__card" %>
+                <span id="success__receipt-link"><%= link_to "View Receipt", @order.receipt_url, class: "success__receipt" %><span>
+            </div>
+        </div>
+    <% else %>
+        <h1>Looks like you're in the wrong neighbourhood!</h1>
+    <% end %>
+    <%= link_to "Back", card_path(@order.listing.card.id) %>
 </section>
