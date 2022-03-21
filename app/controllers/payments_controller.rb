@@ -15,14 +15,14 @@ class PaymentsController < ApplicationController
   def webhook # creates order and posts to stripe
     begin
       payload = request.raw_post # Everything that comes in from our request//similar to params
-      header = request.headers['HTTP_STRIPE_SIGNATURE']
+      header = request.headers["HTTP_STRIPE_SIGNATURE"]
       secret = Rails.application.credentials.dig(:stripe, :webhook_signature)
       event = Stripe::Webhook.construct_event(payload, header, secret)
     rescue Stripe::SignatureVerificationError => e
-      render json: {error: "Unauthorised"}, status: 403
-      return 
+      render json: { error: "Unauthorised" }, status: 403
+      return
     rescue JSON::ParseError => e
-      render json: {error: "Bad request"}, status: 422
+      render json: { error: "Bad request" }, status: 422
       return
     end
 
