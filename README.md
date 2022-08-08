@@ -32,30 +32,30 @@ This isn't a final product by any means, and likely will be recreated or overhau
 ## Installation
 To install **Pokémon Marketplace** you can either:
 1.  Download the repository as a `ZIP` file, and unpack it into your local environment
-2.  Clone the repo `git@github.com:FluroAsh/spotifree.git` with the **Git CLI** command in your terminal, ensuring that this is inside your local envrionment.
+2.  Clone the repo `git@github.com:FluroAsh/pokemon-marketplace.git` with the **Git CLI** command in your terminal, ensuring that this is inside your local envrionment.
 
 > Ensure that you are using >= `Ruby version 2.7.5`, Rails >= 6.1.4.6 as-well as have Postgres installed in your local environment.
 
 For first time installation begin by running installing the current `NPM` dependencies that are found in the [package.json](https://github.com/FluroAsh/pokemon-marketplace/blob/main/package.json) file by running: 
 
 ```bash
-> npm install
+$ npm install
 ```
 
 Please note that this application makes use of `Bootstrap version 4`, later versions cause unexpected issues. If you are still having problems, try executing:
 
 ```bash
-> npm install boostrap@4 jquery popper.js
+$ npm install bootstrap@4 jquery popper.js
 ```
 
 ### Rails Setup
 To get the `Rails` server up and running you'll need to run the following in your CLI:
 
 ```bash
-> bundle install
-> rails db:create
-> rails db:migrate
-> rails db:seed # this will take a few minutes
+$ bundle install
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
 ```
 
 Once this is completed you should have a full list (5000) cards seeded into your local database with the name: `pokemon_marketplace_development`.
@@ -65,7 +65,7 @@ For more advanced fine tuning the application such as the Stripe functionality, 
 
 ### Amazon S3 Setup
 
-In order to configure your own S3 storage you'll need to create your own credentials file (delete the existing one) and then execute:
+In order to configure your own S3 storage you'll need to create your own credentials file, delete the existing one (`credentials.yml.enc`), and then execute:
 
 ```bash
 EDITOR='code --wait' rails credentials:edit
@@ -94,7 +94,7 @@ stripe:
   secret_key: 'sk_test_4eC39HqLyjWDarjtT1zdp7dc' # example key
 ```
 
-You can get an API key by registering with [Stripe](https://stripe.com/en-au) and accessing the developers section in their dashboard under 'API keys'.
+You can get an API key by registering with [Stripe](https://stripe.com/en-au) and accessing the developers section in their dashboard under `API keys`.
 
 The `stripe.rb` intializer file is already set up to look for this key in the credentials file.
 
