@@ -32,31 +32,31 @@ This isn't a final product by any means, and likely will be recreated or overhau
 
 ## Installation
 To install **Pokémon Marketplace** you can either:
-1.  Download the repository as a `ZIP` file, and unpack it into your local environment
+1.  Download the repository as a ZIP file, and unpack it into your local environment
 2.  Clone the repo `git@github.com:FluroAsh/pokemon-marketplace.git` with the **Git CLI** command in your terminal, ensuring that this is inside your local envrionment.
 
-> Ensure that you are using >= `Ruby version 2.7.5`, Rails >= 6.1.4.6 as-well as have Postgres installed in your local environment.
+> Ensure that you are using >= `Ruby version 2.7.5`, >= `Rails version  6.1.4.6` as-well as have Postgres installed in your local environment.
 
-For first time installation begin by running installing the current `NPM` dependencies that are found in the [package.json](https://github.com/FluroAsh/pokemon-marketplace/blob/main/package.json) file by running: 
+For first time installation begin by installing the current `NPM` dependencies that are found in the [package.json](https://github.com/FluroAsh/pokemon-marketplace/blob/main/package.json) file by running: 
 
 ```bash
-$ npm install
+npm install
 ```
 
 Please note that this application makes use of `Bootstrap version 4`, later versions cause unexpected issues. If you are still having problems, try executing:
 
 ```bash
-$ npm install bootstrap@4 jquery popper.js
+npm install bootstrap@4 jquery popper.js
 ```
 
 ### Rails Setup
 To get the `Rails` server up and running you'll need to run the following in your CLI:
 
 ```bash
-$ bundle install
-$ rails db:create
-$ rails db:migrate
-$ rails db:seed
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
 ```
 
 Once this is completed you should have a full list (5000) cards seeded into your local database with the name: `pokemon_marketplace_development`.
@@ -82,7 +82,7 @@ amazon:
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: ap-southeast-2
-  bucket: pokemon-marketplace-at2022 # <-- your chosen bucket name
+  bucket: pokemon-marketplace-at2022 # replaced with your S3 bucket name
 ```
 
 Once this is completed you should be able to successfully create user profile avatars on signup, as-well as change existing ones with the current user.
